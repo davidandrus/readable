@@ -1,5 +1,10 @@
 import React from 'react';
+import { PostTeaser } from '../components';
 
 export default function() {
-  return <h1>Root</h1>
+  return (
+    <div>
+      <PostTeaser />
+    </div>
+  )
 }

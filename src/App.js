@@ -8,7 +8,10 @@ import {
   Route,
 } from 'react-router-dom';
 
-import { Layout } from 'antd';
+import {
+  Layout,
+  Menu,
+} from 'antd';
 
 import {
   Root,
@@ -16,7 +19,14 @@ import {
   Post,
 } from './views';
 
-const { Header, Content } = Layout;
+const {
+  Header,
+  Content,
+  Sider,
+} = Layout;
+
+// @TODO - add test converage
+// @TODO - add flow
 
 class App extends Component {
   render() {
@@ -24,13 +34,22 @@ class App extends Component {
       <Router>
         <Layout>
           <Header>
-            <div style={{background: 'red', height: 50, width: 100 }} />
+            <h1>Readable</h1>
           </Header>
-          <Content>
-            <Route exact path="/" component={Root} />
-            <Route exact path="/category" component={Category} />
-            <Route exact path="/post" component={Post} />
-          </Content>
+          <Layout>
+            <Sider>
+              <Menu>
+                <Menu.Item key="1">Category</Menu.Item>
+              </Menu>
+            </Sider>
+            <Layout style={{padding: 25}}>
+              <Content style={{padding: 25, background: '#fff' }}>
+                <Route exact path="/" component={Root} />
+                <Route exact path="/category" component={Category} />
+                <Route exact path="/post" component={Post} />
+              </Content>
+            </Layout>
+          </Layout>
         </Layout>
       </Router>
     );
