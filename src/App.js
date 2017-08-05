@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
+// @TODO - possibly replace with redux router
 import {
   BrowserRouter as Router,
   Route,
-  Link,
 } from 'react-router-dom';
 
 import {
@@ -12,8 +12,6 @@ import {
   Post,
 } from './views';
 
-import logo from './logo.svg';
-import './App.css';
 
 class App extends Component {
   render() {
