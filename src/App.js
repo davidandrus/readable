@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 
 import 'antd/dist/antd.css';
 
-// @TODO - possibly replace with redux router
 import {
   BrowserRouter as Router,
   Route,
@@ -12,6 +13,8 @@ import {
   Layout,
   Menu,
 } from 'antd';
+
+import rootReducer from './reducers/root';
 
 import {
   Root,
@@ -25,33 +28,41 @@ const {
   Sider,
 } = Layout;
 
+
+const store = createStore(rootReducer);
+
+// @TODO -store should be it's own module
+// @TODO - possibly replace react-router with redux version
 // @TODO - add test converage
 // @TODO - add flow
+// @TODO - eliminate all warnings and errors
 
 class App extends Component {
   render() {
     return (
-      <Router>
-        <Layout>
-          <Header>
-            <h1>Readable</h1>
-          </Header>
+      <Provider store={store}>
+        <Router>
           <Layout>
-            <Sider>
-              <Menu>
-                <Menu.Item key="1">Category</Menu.Item>
-              </Menu>
-            </Sider>
-            <Layout style={{padding: 25}}>
-              <Content style={{padding: 25, background: '#fff' }}>
-                <Route exact path="/" component={Root} />
-                <Route exact path="/category" component={Category} />
-                <Route exact path="/post" component={Post} />
-              </Content>
+            <Header>
+              <h1>Readable</h1>
+            </Header>
+            <Layout>
+              <Sider>
+                <Menu>
+                  <Menu.Item key="1">Category</Menu.Item>
+                </Menu>
+              </Sider>
+              <Layout style={{padding: 25}}>
+                <Content style={{padding: 25, background: '#fff' }}>
+                  <Route exact path="/" component={Root} />
+                  <Route exact path="/category" component={Category} />
+                  <Route exact path="/post" component={Post} />
+                </Content>
+              </Layout>
             </Layout>
           </Layout>
-        </Layout>
-      </Router>
+        </Router>
+      </Provider>
     );
   }
 }

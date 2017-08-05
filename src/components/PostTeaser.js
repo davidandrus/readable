@@ -1,6 +1,5 @@
 import React from 'react';
-import { Card, Avatar, Icon, Button } from 'antd';
-
+import { Card, Button } from 'antd';
 
 export default function PostTeaser() {
   return (
