@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
-
 import 'antd/dist/antd.css';
+
+import React, { Component } from 'react';
+import { Provider } from 'react-redux';
 
 import {
   BrowserRouter as Router,
@@ -14,7 +13,7 @@ import {
   Menu,
 } from 'antd';
 
-import rootReducer from './reducers/root';
+import store from './store';
 
 import {
   Root,
@@ -28,10 +27,6 @@ const {
   Sider,
 } = Layout;
 
-
-const store = createStore(rootReducer);
-
-// @TODO -store should be it's own module
 // @TODO - possibly replace react-router with redux version
 // @TODO - add test converage
 // @TODO - add flow
