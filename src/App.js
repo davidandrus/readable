@@ -6,9 +6,13 @@ import { Provider } from 'react-redux';
 import {
   BrowserRouter as Router,
   Route,
+  Link,
 } from 'react-router-dom';
 
-import { Layout } from 'antd';
+import {
+  Layout,
+  Icon,
+} from 'antd';
 
 import store from './store';
 
@@ -43,9 +47,13 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router>
-          <Layout>
+          <Layout style={{ minHeight: '100vh' }}>
             <Header>
-              <h1>Readable</h1>
+              <Link to="/">
+                <h1 style={{ color: 'white', display: 'inline-block' }}>
+                  <Icon type="book" /> Readable
+                </h1>
+              </Link>
             </Header>
             <Layout>
               <Sider>
