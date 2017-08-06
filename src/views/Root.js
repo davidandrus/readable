@@ -1,18 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { PostTeaser } from '../components';
+import PostList from '../components/PostList';
 
-function Root(props) {
-  console.log({ props });
+function Root({ posts }) {
   return (
     <div>
-      <PostTeaser />
+      <PostList posts={posts} />
     </div>
   )
 }
 
-const mapStateToProps = ({ categories }) => ({
-  categories,
+const mapStateToProps = ({ posts }) => ({
+  posts,
 });
 
 export default connect(mapStateToProps)(Root)

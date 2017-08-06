@@ -12,11 +12,9 @@ import { Layout } from 'antd';
 
 import store from './store';
 
-import {
-  Root,
-  Category,
-  Post,
-} from './views';
+import Root from './views/Root';
+import Category from './views/Category';
+import Post from './views/Post';
 
 import CategoriesMenu from './components/CategoriesMenu'
 
@@ -28,9 +26,6 @@ const {
   Content,
   Sider,
 } = Layout;
-
-
-
 
 // @TODO - possibly replace react-router with redux version
 // @TODO - add test converage
