@@ -15,6 +15,7 @@ import store from './store';
 import Root from './views/Root';
 import Category from './views/Category';
 import Post from './views/Post';
+import PostCreate from './views/PostCreate';
 
 import CategoriesMenu from './components/CategoriesMenu'
 
@@ -55,6 +56,7 @@ class App extends Component {
                   <Route exact path="/" component={Root} />
                   <Route exact path="/category" component={Category} />
                   <Route exact path="/post" component={Post} />
+                  <Route exact path="/post/create" component={PostCreate} />
                 </Content>
               </Layout>
             </Layout>
