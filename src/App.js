@@ -21,6 +21,8 @@ import {
   Post,
 } from './views';
 
+import CategoriesMenu from './components/CategoriesMenu'
+
 import loadCategories from './actions/loadCategories';
 
 const {
@@ -52,9 +54,7 @@ class App extends Component {
             </Header>
             <Layout>
               <Sider>
-                <Menu>
-                  <Menu.Item key="1">Category</Menu.Item>
-                </Menu>
+                <CategoriesMenu />
               </Sider>
               <Layout style={{padding: 25}}>
                 <Content style={{padding: 25, background: '#fff' }}>
