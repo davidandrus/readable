@@ -1,7 +1,7 @@
 import categories from './categories';
-
+ 
 it('should initialize with empty array', () => {
-  const subject = categories();
+  const subject = categories(undefined, {});
   expect(subject).toEqual([]);
 });
 

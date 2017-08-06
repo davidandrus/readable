@@ -1,10 +1,6 @@
+import { handleActions } from 'redux-actions';
 import { LOAD_CATEGORIES } from '../actions/actionNames';
 
-export default function(state = [], action = {}) {
-  switch(action.type) {
-    case LOAD_CATEGORIES:
-      return action.payload;
-    default:
-      return state;
-  }
-};
+export default handleActions({
+  [LOAD_CATEGORIES]: (state, { payload }) => payload,
+}, []);
