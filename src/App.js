@@ -21,11 +21,16 @@ import {
   Post,
 } from './views';
 
+import loadCategories from './actions/loadCategories';
+
 const {
   Header,
   Content,
   Sider,
 } = Layout;
+
+
+
 
 // @TODO - possibly replace react-router with redux version
 // @TODO - add test converage
@@ -33,6 +38,10 @@ const {
 // @TODO - eliminate all warnings and errors
 
 class App extends Component {
+  componentDidMount() {
+    store.dispatch(loadCategories());
+  }
+
   render() {
     return (
       <Provider store={store}>
