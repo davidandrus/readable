@@ -9,9 +9,16 @@ it('should be a function', () => {
 });
 
 it('should return object', () => {
-  expect(rootReducer()).toBeInstanceOf(Object);
+  const subject = rootReducer(undefined, {});
+  expect().toBeInstanceOf(Object);
 });
 
 it('should have categories', () => {
-  expect(rootReducer()).toHaveProperty('categories');
+  const subject = rootReducer(undefined, {});
+  expect(subject).toHaveProperty('categories');
+});
+
+it('should have posts', () => {
+  const subject = rootReducer(undefined, {});
+  expect(subject).toHaveProperty('posts');
 });

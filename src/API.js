@@ -1,16 +1,25 @@
 const BASE_URL = 'http://localhost:5001';
 
-function getCategories() {
-  return fetch(`${BASE_URL}/categories`, {
-    'method': 'GET',
+const standardFetch = (endpoint, method = 'GET') => (
+  fetch(`${BASE_URL}/${endpoint}`, {
+    method,
     headers: new Headers({
       'authorization': 'authHeaderValue',
     }),
   })
     .then(res => res.json())
-    .then(({ categories }) => categories)
+)
+
+function getCategories() {
+  return standardFetch('categories')
+    .then(({ categories }) => categories);
+}
+
+function getPosts() {
+  return standardFetch('posts')
 }
 
 export {
   getCategories,
+  getPosts,
 }

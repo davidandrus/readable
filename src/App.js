@@ -21,6 +21,7 @@ import {
 import CategoriesMenu from './components/CategoriesMenu'
 
 import loadCategories from './actions/loadCategories';
+import loadPosts from './actions/loadPosts';
 
 const {
   Header,
@@ -39,6 +40,7 @@ const {
 class App extends Component {
   componentDidMount() {
     store.dispatch(loadCategories());
+    store.dispatch(loadPosts());
   }
 
   render() {
