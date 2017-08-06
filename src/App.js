@@ -8,10 +8,7 @@ import {
   Route,
 } from 'react-router-dom';
 
-import {
-  Layout,
-  Menu,
-} from 'antd';
+import { Layout } from 'antd';
 
 import store from './store';
 
