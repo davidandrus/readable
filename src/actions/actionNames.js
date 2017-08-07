@@ -1,6 +1,10 @@
+const makeAsyncAction = (name) => ({
+  STANDARD: name,
+  PENDING: `${name}_PENDING`,
+  FULFILLED: `${name}_FULFILLED`,
+  REJECTED: `${name}_REJECTED`,
+})
+
 export const LOAD_CATEGORIES = 'LOAD_CATEGORIES';
 export const LOAD_POSTS = 'LOAD_POSTS';
-export const CREATE_POST = 'CREATE_POST';
-export const CREATE_POST_PENDING = 'CREATE_POST_PENDING';
-export const CREATE_POST_FULFILLED = 'CREATE_POST_FULFILLED';
-export const CREATE_POST_REJECTED = 'CREATE_POST_REJECTED';
+export const CREATE_POST = makeAsyncAction('CREATE_POST');

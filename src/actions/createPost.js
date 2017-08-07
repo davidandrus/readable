@@ -4,7 +4,7 @@ import { CREATE_POST } from './actionNames';
 export default function createPost(post) {
   return (dispatch, getState) => {
     dispatch({
-      type: CREATE_POST,
+      type: CREATE_POST.STANDARD,
       payload: makePostRequest(post)
     });
   }
