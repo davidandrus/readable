@@ -3,21 +3,32 @@ import PropTypes from 'prop-types';
 import { Card, Button } from 'antd';
 
 export default function PostTeaser({
-  author,
-  body,
-  category,
-  timestamp,
-  title,
-  voteScore,
+  onDownVote,
+  onUpVote,
+  post: {
+    author,
+    body,
+    category,
+    id,
+    timestamp,
+    title,
+    voteScore,
+  },
 }) {
   const dateString = new Date(timestamp).toLocaleDateString('en-US');
 
   return (
     <div style={{display: 'flex', marginBottom: 30 }}>
       <div style={{display: 'flex', width: 50, flexDirection: 'column', alignItems: 'center', fontSize: 30, marginRight: 20}}>
-        <Button icon="caret-up" />
+        <Button
+          icon="caret-up"
+          onClick={() => onUpVote(id)}
+          />
         {voteScore}
-        <Button icon="caret-down" />
+        <Button 
+          icon="caret-down"
+          onClick={() => onDownVote(id)}
+        />
       </div>
       <div style={{flex: '1 1 20000px'}}>
         <Card title={title}>
@@ -43,10 +54,15 @@ export default function PostTeaser({
 }
 
 PostTeaser.propTypes = {
-  author: PropTypes.string,
-  body: PropTypes.string,
-  category: PropTypes.string,
-  title: PropTypes.string,
-  timestamp: PropTypes.number,
-  voteScore: PropTypes.number,
+  onDownVote: PropTypes.func,
+  onUpVote: PropTypes.func,
+  post: PropTypes.shape({
+    author: PropTypes.string,
+    body: PropTypes.string,
+    category: PropTypes.string,
+    id: PropTypes.number,
+    title: PropTypes.string,
+    timestamp: PropTypes.number,
+    voteScore: PropTypes.number,
+  }),
 };

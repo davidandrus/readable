@@ -43,8 +43,8 @@ const {
 
 class App extends Component {
   componentDidMount() {
-    // store.dispatch(loadCategories());
-    // store.dispatch(loadPosts());
+    store.dispatch(loadCategories());
+    store.dispatch(loadPosts());
     // store.dispatch(createPost({
     //   "id": "6ni6ok3ym7mf1p33lnez-sucka",
     //   "timestamp": 1468479767190,
@@ -53,7 +53,6 @@ class App extends Component {
     //   "author": "sucka - thingone",
     //   "category": "redux",
     // }));
-    store.dispatch(downVote('8xf0y6ziyjabvozdd253nd'));
   }
 
   render() {
