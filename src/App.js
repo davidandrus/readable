@@ -9,12 +9,15 @@ import {
   Link,
 } from 'react-router-dom';
 
+import { ConnectedRouter } from 'react-router-redux';
+
 import {
   Layout,
   Icon,
 } from 'antd';
 
 import store from './store';
+import history from './history';
 
 import Root from './views/Root';
 import Category from './views/Category';
@@ -55,7 +58,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router>
+        <ConnectedRouter history={history}>
           <Layout style={{ minHeight: '100vh' }}>
             <Header>
               <Link to="/">
@@ -78,7 +81,7 @@ class App extends Component {
               </Layout>
             </Layout>
           </Layout>
-        </Router>
+        </ConnectedRouter>
       </Provider>
     );
   }
