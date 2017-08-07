@@ -18,6 +18,12 @@ const standardFetch = (endpoint, options = {}) => {
     .then(res => res.json())
 }
 
+const standardPost = (endpoint, body) => standardFetch(endpoint, {
+  body: JSON.stringify(body),
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+});
+
 function getCategories() {
   return standardFetch('categories')
     .then(({ categories }) => categories);
@@ -28,15 +34,21 @@ function getPosts() {
 }
 
 function createPost(params) {
-  return standardFetch('posts', {
-    method: 'POST',
-    body: JSON.stringify(params),
-    headers: { 'Content-Type': 'application/json' }
-  });
+  return standardPost('posts', params);
+}
+
+function upVote(id) {
+  return standardPost(`posts/${id}`, { option: 'upVote' });
+}
+
+function downVote(id) {
+  return standardPost(`posts/${id}`, { option: 'downVote' });
 }
 
 export {
   createPost,
   getCategories,
   getPosts,
+  upVote,
+  downVote,
 }

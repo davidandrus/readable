@@ -29,6 +29,8 @@ import CategoriesMenu from './components/CategoriesMenu'
 import loadCategories from './actions/loadCategories';
 import loadPosts from './actions/loadPosts';
 import createPost from './actions/createPost';
+import upVote from './actions/upVote';
+import downVote from './actions/downVote';
 
 const {
   Header,
@@ -41,16 +43,17 @@ const {
 
 class App extends Component {
   componentDidMount() {
-    store.dispatch(loadCategories());
-    store.dispatch(loadPosts());
-    store.dispatch(createPost({
-      "id": "6ni6ok3ym7mf1p33lnez-sucka",
-      "timestamp": 1468479767190,
-      "title": "sucka - Learn Redux in 10 minutes!",
-      "body": "sucka - Just kidding. It takes more than 10 minutes to learn technology.",
-      "author": "sucka - thingone",
-      "category": "redux",
-    }));
+    // store.dispatch(loadCategories());
+    // store.dispatch(loadPosts());
+    // store.dispatch(createPost({
+    //   "id": "6ni6ok3ym7mf1p33lnez-sucka",
+    //   "timestamp": 1468479767190,
+    //   "title": "sucka - Learn Redux in 10 minutes!",
+    //   "body": "sucka - Just kidding. It takes more than 10 minutes to learn technology.",
+    //   "author": "sucka - thingone",
+    //   "category": "redux",
+    // }));
+    store.dispatch(downVote('8xf0y6ziyjabvozdd253nd'));
   }
 
   render() {
