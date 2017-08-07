@@ -36,9 +36,7 @@ const {
   Sider,
 } = Layout;
 
-// @TODO - possibly replace react-router with redux version
 // @TODO - add test converage
-// @TODO - add flow
 // @TODO - eliminate all warnings and errors
 
 class App extends Component {
