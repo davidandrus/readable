@@ -14,3 +14,13 @@ it('should return payload when triggered with LOAD_POSTS action', () => {
 
   expect(subject).toEqual(results);
 });
+
+it('should add new post to posts when CREATE_POST_FULLFILLED', () => {
+  const result = { name: 'item 1', 'id': 'id' };
+  const subject = posts([], {
+    type: 'CREATE_POST_FULFILLED',
+    payload: result,
+  });
+
+  expect(subject).toEqual([result]);
+})
