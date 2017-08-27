@@ -15,6 +15,7 @@ export default function PostTeaser({
   post: {
     author,
     body,
+    comments,
     category,
     id,
     timestamp,
@@ -22,6 +23,7 @@ export default function PostTeaser({
     voteScore,
   },
 }) {
+
   const dateString = new Date(timestamp).toLocaleDateString('en-US');
   const titleElem = <Link to={`${category}/${id}`}>{title}</Link>;
 
@@ -53,7 +55,7 @@ export default function PostTeaser({
             <div>
               Posted On: <strong>{dateString}</strong>
             </div>
-            <div style={{marginBottom: 20}}><strong>500 Comments</strong></div>
+            <div style={{marginBottom: 20}}><strong>{comments.length} Comments</strong></div>
             <PostButtons
               id={id}
               onDelete={onDelete}

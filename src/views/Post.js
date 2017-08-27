@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import find from 'lodash/find';
 import get from 'lodash/get';
@@ -11,52 +11,33 @@ import deletePost from '../actions/deletePost';
 import loadComments from '../actions/loadComments';
 import loadPosts from '../actions/loadPosts';
 
-class Post extends Component {
-  componentDidUpdate() {
-    const {
-      actions: {
-        loadComments,
-        loadPosts,
-      },
-      post,
-    } = this.props;
-  
-    
-    loadPosts().then(() => {
-      loadComments(get(post, 'id'));
-    });
+function Post({
+  post: {
+    title,
+    body,
+    id,
+  } = {},
+  comments,
+  actions: {
+    onDelete,
   }
-
-  render() {
-    const {
-      post: {
-        title,
-        body,
-        id,
-      } = {},
-      comments,
-      actions: {
-        onDelete,
-      }
-    } = this.props;
-
-    return (
-      <div style={{ width: '100%' }}>
-        <h1 style={{ marginBottom: 20 }}>{title}</h1>
-        <div style={{ fontSize: 18, marginBottom: 30 }}>{body}</div>
-        <div style={{marginBottom: 20}}>
-          <PostButtons
-            id={id}
-            onDelete={onDelete}
-          />
-        </div>
-        <h2 style={{ marginBottom: 10 }} >Comments</h2>
-        {comments.map(({ body }) => {
-          return <Card style={{marginBottom: 5 }}>{body}</Card>
-        })}
+}) {
+  return (
+    <div style={{ width: '100%' }}>
+      <h1 style={{ marginBottom: 20 }}>{title}</h1>
+      <div style={{ fontSize: 18, marginBottom: 30 }}>{body}</div>
+      <div style={{marginBottom: 20}}>
+        <PostButtons
+          id={id}
+          onDelete={onDelete}
+        />
       </div>
-    );
-  }
+      <h2 style={{ marginBottom: 10 }} >Comments</h2>
+      {comments.map(({ body }) => {
+        return <Card style={{marginBottom: 5 }}>{body}</Card>
+      })}
+    </div>
+  );
 }
 
 function mapStateToProps({ posts, comments }, { match }) {

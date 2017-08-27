@@ -11,10 +11,15 @@ import deletePost from '../actions/deletePost';
 
 import PostList from '../components/PostList';
 
-function Category({ posts, actions }) {
+function Category({
+  posts,
+  comments,
+  actions,
+}) {
   return (
     <div>
       <PostList
+        comments={comments}
         posts={posts}
         onUpVote={actions.onUpVote}
         onDownVote={actions.onDownVote}
@@ -39,7 +44,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-const mapStateToProps = ({ posts }, { match }) => {
+const mapStateToProps = ({ posts, comments }, { match }) => {
   const category = get(match, 'params.category');
 
   return {
@@ -50,6 +55,7 @@ const mapStateToProps = ({ posts }, { match }) => {
         .filter(post => category ? category === post.category : true),
       'voteScore'
     ).reverse(),
+    comments,
   };
 };
 
