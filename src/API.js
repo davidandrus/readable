@@ -1,6 +1,6 @@
 const BASE_URL = 'http://localhost:5001';
 
-const standardFetch = (endpoint, options = {}) => {
+const standardRequest = (endpoint, options = {}) => {
   const {
     method = 'GET',
     headers,
@@ -15,22 +15,30 @@ const standardFetch = (endpoint, options = {}) => {
     }),
     body,
   })
-    .then(res => res.json())
 }
 
-const standardPost = (endpoint, body) => standardFetch(endpoint, {
+const standardGet = (endpoint, options) => standardRequest(endpoint, {
+  'headers': { 'Content-Type': 'application/json' },
+}).then(res => res.json())
+
+const standardPost = (endpoint, body) => standardRequest(endpoint, {
   body: JSON.stringify(body),
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
+}).then(res => res.json());
+
+const standardDelete = (endpoint, id) => standardRequest(endpoint, {
+  method: 'DELETE',
+  headers: { 'Content-Type': 'application/text' },
 });
 
 function getCategories() {
-  return standardFetch('categories')
+  return standardGet('categories')
     .then(({ categories }) => categories);
 }
 
 function getPosts() {
-  return standardFetch('posts')
+  return standardGet('posts')
 }
 
 function createPost(params) {
@@ -41,16 +49,13 @@ function createPost(params) {
   });
 }
 
-function upVote(id) {
-  return standardPost(`posts/${id}`, { option: 'upVote' });
-}
-
-function downVote(id) {
-  return standardPost(`posts/${id}`, { option: 'downVote' });
-}
+const deletePost = (id) => standardDelete(`posts/${id}`);
+const upVote = (id) => standardPost(`posts/${id}`, { option: 'upVote' });
+const downVote = (id) => standardPost(`posts/${id}`, { option: 'downVote' });
 
 export {
   createPost,
+  deletePost,
   getCategories,
   getPosts,
   upVote,

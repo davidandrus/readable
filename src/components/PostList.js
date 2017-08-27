@@ -4,6 +4,7 @@ import PostTeaser from './PostTeaser';
 export default function PostList({
   posts,
   onUpVote,
+  onDelete,
   onDownVote,
 }) {
   return (
@@ -12,6 +13,7 @@ export default function PostList({
         <PostTeaser
           post={post}
           key={post.id}
+          onDelete={onDelete}
           onUpVote={onUpVote}
           onDownVote={onDownVote}
         />

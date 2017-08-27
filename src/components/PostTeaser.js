@@ -1,8 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, Button } from 'antd';
+import {
+  Card,
+  Button,
+  Icon,
+} from 'antd';
+
+const { Group: ButtonGroup } = Button;
 
 export default function PostTeaser({
+  onDelete,
   onDownVote,
   onUpVote,
   post: {
@@ -16,6 +23,7 @@ export default function PostTeaser({
   },
 }) {
   const dateString = new Date(timestamp).toLocaleDateString('en-US');
+  console.log('rendering PostTeaser', onDelete);
 
   return (
     <div style={{display: 'flex', marginBottom: 30 }}>
@@ -45,7 +53,19 @@ export default function PostTeaser({
             <div>
               Posted On: <strong>{dateString}</strong>
             </div>
-            <div><strong>500 Comments</strong></div>
+            <div style={{marginBottom: 20}}><strong>500 Comments</strong></div>
+            <div>
+              <ButtonGroup>
+                <Button type="primary">
+                  <Icon type="edit" />
+                  Edit
+                </Button>
+                <Button type="danger" onClick={() => onDelete(id)}>
+                  <Icon type="delete" />
+                  Delete
+                </Button>
+              </ButtonGroup>
+            </div>
           </div>
         </Card>
       </div>
