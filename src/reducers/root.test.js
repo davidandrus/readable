@@ -10,7 +10,7 @@ it('should be a function', () => {
 
 it('should return object', () => {
   const subject = rootReducer(undefined, {});
-  expect().toBeInstanceOf(Object);
+  expect(subject).toBeInstanceOf(Object);
 });
 
 it('should have categories', () => {

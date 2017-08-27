@@ -7,7 +7,7 @@ function CategoriesList({ categories }) {
   return (
     <Menu>
       {categories.map(category => (
-          <Menu.Item >
+          <Menu.Item key={category.name}>
             <Link 
               to={`/category/${category.path}`}
               key={category.name}
