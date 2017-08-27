@@ -23,14 +23,12 @@ import Root from './views/Root';
 import Category from './views/Category';
 import Post from './views/Post';
 import PostCreate from './views/PostCreate';
+import PostEdit from './views/PostEdit';
 
 import CategoriesMenu from './components/CategoriesMenu'
 
 import loadCategories from './actions/loadCategories';
 import loadPosts from './actions/loadPosts';
-import createPost from './actions/createPost';
-import upVote from './actions/upVote';
-import downVote from './actions/downVote';
 
 const {
   Header,
@@ -45,14 +43,6 @@ class App extends Component {
   componentDidMount() {
     store.dispatch(loadCategories());
     store.dispatch(loadPosts());
-    // store.dispatch(createPost({
-    //   "id": "6ni6ok3ym7mf1p33lnez-sucka",
-    //   "timestamp": 1468479767190,
-    //   "title": "sucka - Learn Redux in 10 minutes!",
-    //   "body": "sucka - Just kidding. It takes more than 10 minutes to learn technology.",
-    //   "author": "sucka - thingone",
-    //   "category": "redux",
-    // }));
   }
 
   render() {
@@ -77,6 +67,7 @@ class App extends Component {
                   <Route exact path="/category" component={Category} />
                   <Route exact path="/post" component={Post} />
                   <Route exact path="/post/create" component={PostCreate} />
+                  <Route exact path="/post/edit/:id" component={PostEdit} />
                 </Content>
               </Layout>
             </Layout>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
   Card,
@@ -23,7 +24,6 @@ export default function PostTeaser({
   },
 }) {
   const dateString = new Date(timestamp).toLocaleDateString('en-US');
-  console.log('rendering PostTeaser', onDelete);
 
   return (
     <div style={{display: 'flex', marginBottom: 30 }}>
@@ -56,10 +56,12 @@ export default function PostTeaser({
             <div style={{marginBottom: 20}}><strong>500 Comments</strong></div>
             <div>
               <ButtonGroup>
-                <Button type="primary">
-                  <Icon type="edit" />
-                  Edit
-                </Button>
+                  <Button type="primary">
+                    <Link to={`/post/edit/${id}`}>
+                      <Icon type="edit" />
+                      Edit
+                    </Link>
+                  </Button>
                 <Button type="danger" onClick={() => onDelete(id)}>
                   <Icon type="delete" />
                   Delete

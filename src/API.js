@@ -27,6 +27,12 @@ const standardPost = (endpoint, body) => standardRequest(endpoint, {
   headers: { 'Content-Type': 'application/json' },
 }).then(res => res.json());
 
+const standardPut = (endpoint, body) => standardRequest(endpoint, {
+  body: JSON.stringify(body),
+  method: 'PUT',
+  headers: { 'Content-Type': 'application/json' },
+}).then(res => res.json());
+
 const standardDelete = (endpoint, id) => standardRequest(endpoint, {
   method: 'DELETE',
   headers: { 'Content-Type': 'application/text' },
@@ -44,11 +50,12 @@ function getPosts() {
 function createPost(params) {
   return standardPost('posts', {
     ...params,
-    "id": Math.random(),
-    "timestamp": Date.now(),
+    id: `${Math.random()}`,
+    timestamp: Date.now(),
   });
 }
 
+const editPost = (id, params) => standardPut(`posts/${id}`, params);
 const deletePost = (id) => standardDelete(`posts/${id}`);
 const upVote = (id) => standardPost(`posts/${id}`, { option: 'upVote' });
 const downVote = (id) => standardPost(`posts/${id}`, { option: 'downVote' });
@@ -56,6 +63,7 @@ const downVote = (id) => standardPost(`posts/${id}`, { option: 'downVote' });
 export {
   createPost,
   deletePost,
+  editPost,
   getCategories,
   getPosts,
   upVote,

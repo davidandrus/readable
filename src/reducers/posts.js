@@ -3,6 +3,7 @@ import {
   LOAD_POSTS,
   CREATE_POST,
   DELETE_POST,
+  EDIT_POST,
   UPVOTE,
   DOWNVOTE,
 } from '../actions/actionNames';
@@ -18,6 +19,7 @@ export default handleActions({
     ...post,
     deleted: post.id === payload || post.deleted,
   })),
+  [EDIT_POST.FULFILLED]: addOrReplacePost,
   [UPVOTE.FULFILLED]: addOrReplacePost,
   [DOWNVOTE.FULFILLED]: addOrReplacePost,
 }, []);

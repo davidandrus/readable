@@ -4,15 +4,18 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import createPost from '../actions/createPost';
-import CreatePostForm from '../forms/CreatePostForm';
+import CreateEditPostForm from '../forms/CreateEditPostForm';
+
+// @TODO - lots of redundancy between this and edit
 
 function PostCreate({ categories, actions }) {
   return (
     <div>
       <h1>Create Post</h1>
-      <CreatePostForm
+      <CreateEditPostForm
         categories={categories}
         onSubmit={actions.createPost}
+        context="create"
       />
     </div>
   );

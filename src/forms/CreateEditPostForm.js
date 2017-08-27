@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {
   Field,
   reduxForm,
@@ -6,7 +7,6 @@ import {
 
 import {
   Button,
-  Input,
   Select,
 } from 'antd';
 
@@ -16,14 +16,21 @@ import {
 } from 'redux-form-antd'
 
 const standardInputStyle = {
-  // marginBottom: 20,
   width: '100%',
 };
 
 const { Option } = Select;
 
-const CreatePostForm = (props) => {
-  const { handleSubmit, pristine, reset, submitting, categories } = props;
+const CreateEditPostForm = (props) => {
+  const {
+    handleSubmit,
+    pristine,
+    reset,
+    submitting,
+    categories,
+    context,
+  } = props;
+
   const categoryOptions = categories.map(({ name }) => ({
     label: name,
     value: name,
@@ -72,12 +79,23 @@ const CreatePostForm = (props) => {
         htmlType="submit"
         type="primary"
       >
-        Create Post
+        {context === 'edit'
+          ? 'Update Post'
+          : 'Create Post'
+        }
       </Button>
     </form>
   )
 }
 
-export default reduxForm({
+const Form = reduxForm({
   form: 'createPost',
-})(CreatePostForm);
+})(CreateEditPostForm);
+
+function mapStateToProps(state, ownProps) {
+  return {
+    initialValues: ownProps.post,
+  }
+}
+
+export default connect(mapStateToProps)(Form)
