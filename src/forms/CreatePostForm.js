@@ -16,7 +16,7 @@ import {
 } from 'redux-form-antd'
 
 const standardInputStyle = {
-  marginBottom: 20,
+  // marginBottom: 20,
   width: '100%',
 };
 
@@ -24,6 +24,11 @@ const { Option } = Select;
 
 const CreatePostForm = (props) => {
   const { handleSubmit, pristine, reset, submitting, categories } = props;
+  const categoryOptions = categories.map(({ name }) => ({
+    label: name,
+    value: name,
+  }));
+
   return (
     <form onSubmit={handleSubmit}>
       <label>
@@ -40,10 +45,7 @@ const CreatePostForm = (props) => {
         <Field
           component={SelectField}
           name="category"
-          options={categories.map(({ name }) => ({
-            label: name,
-            value: name,
-          }))}
+          options={categoryOptions}
           style={standardInputStyle} 
         />
       </label>
@@ -60,13 +62,18 @@ const CreatePostForm = (props) => {
         Post Body
         <Field
           component={TextField}
-          name="post"
+          name="body"
           size='large'
           style={standardInputStyle} 
           type="textarea"
         />
       </label>
-      <Button type="primary">Create Post</Button>
+      <Button
+        htmlType="submit"
+        type="primary"
+      >
+        Create Post
+      </Button>
     </form>
   )
 }
@@ -74,48 +81,3 @@ const CreatePostForm = (props) => {
 export default reduxForm({
   form: 'createPost',
 })(CreatePostForm);
-
-
-/* <label>
-Title
-<Input
-  size='large'
-  style={{width: '100%', marginBottom: 20}} 
-/>
-</label>
-<div>
-<label>
-  Category
-  <Select style={{width: '100%', marginBottom: 20}}>
-    {categories.map(({ name }) => (
-      <Option
-        key={name}
-        value={name}
-      >
-        {name}
-      </Option>
-    ))}
-  </Select>
-</label>
-</div>
-<label>
-Author
-<Input
-  size='large'
-  style={{width: '100%', marginBottom: 20}} 
-/>
-</label>
-<br />
-<label>
-Post Body
-<Input.TextArea
-  size='large'
-  style={{width: '100%', marginBottom: 20}} 
-  addonBefore='Content'
-/>
-</label>
-<Button type="primary">Create Post</Button>
-</form> */
-
-
-

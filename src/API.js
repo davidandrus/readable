@@ -34,7 +34,11 @@ function getPosts() {
 }
 
 function createPost(params) {
-  return standardPost('posts', params);
+  return standardPost('posts', {
+    ...params,
+    "id": Math.random(),
+    "timestamp": Date.now(),
+  });
 }
 
 function upVote(id) {
