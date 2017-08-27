@@ -4,10 +4,9 @@ import PropTypes from 'prop-types';
 import {
   Card,
   Button,
-  Icon,
 } from 'antd';
 
-const { Group: ButtonGroup } = Button;
+import PostButtons from './PostButtons';
 
 export default function PostTeaser({
   onDelete,
@@ -55,20 +54,10 @@ export default function PostTeaser({
               Posted On: <strong>{dateString}</strong>
             </div>
             <div style={{marginBottom: 20}}><strong>500 Comments</strong></div>
-            <div>
-              <ButtonGroup>
-                  <Button type="primary">
-                    <Link to={`/post/edit/${id}`}>
-                      <Icon type="edit" />
-                      Edit
-                    </Link>
-                  </Button>
-                <Button type="danger" onClick={() => onDelete(id)}>
-                  <Icon type="delete" />
-                  Delete
-                </Button>
-              </ButtonGroup>
-            </div>
+            <PostButtons
+              id={id}
+              onDelete={onDelete}
+            />
           </div>
         </Card>
       </div>

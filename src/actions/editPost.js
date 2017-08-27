@@ -8,7 +8,8 @@ export default function editPost(id, params) {
     dispatch({
       type: EDIT_POST.STANDARD,
       payload: makePostRequest(id, params),
-    });
-    dispatch(push('/'));
+    }).then(({ value }) => {
+      dispatch(push(`/${value.category}/${value.id}`));
+    });;
   }
 }
