@@ -13,7 +13,7 @@ const addOrReplacePost = (state, { payload }) => state
   .concat(payload);
 
 export default handleActions({
-  [LOAD_POSTS]: (state, { payload }) => payload,
+  [LOAD_POSTS.FULFILLED]: (state, { payload }) => payload,
   [CREATE_POST.FULFILLED]: addOrReplacePost,
   [DELETE_POST.FULFILLED]: (state, { payload }) => state.map(post => ({
     ...post,

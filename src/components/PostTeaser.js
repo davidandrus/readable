@@ -24,6 +24,7 @@ export default function PostTeaser({
   },
 }) {
   const dateString = new Date(timestamp).toLocaleDateString('en-US');
+  const titleElem = <Link to={`${category}/${id}`}>{title}</Link>;
 
   return (
     <div style={{display: 'flex', marginBottom: 30 }}>
@@ -39,7 +40,7 @@ export default function PostTeaser({
         />
       </div>
       <div style={{flex: '1 1 20000px'}}>
-        <Card title={title}>
+        <Card title={titleElem}>
           <div style={{display: 'flex', flexDirection: 'column'}}>
             <div style={{marginBottom: 20}}>
               {body}

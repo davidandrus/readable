@@ -35,7 +35,6 @@ const {
   Sider,
 } = Layout;
 
-// @TODO - add test converage
 // @TODO - eliminate all warnings and errors
 
 class App extends Component {
@@ -64,9 +63,9 @@ class App extends Component {
                 <Content style={{padding: 25, background: '#fff' }}>
                   <Route exact path="/" component={Category} />
                   <Route exact path="/:category" component={Category} />
-                  <Route exact path="/post" component={Post} />
+                  <Route exact path="/:category/:post_id" component={Post} />
                   <Route exact path="/post/create" component={PostCreate} />
-                  <Route exact path="/post/edit/:id" component={PostEdit} />
+                  <Route exact path="/post/edit/:post_id" component={PostEdit} />
                 </Content>
               </Layout>
             </Layout>

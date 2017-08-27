@@ -27,10 +27,10 @@ PostEdit.propTypes = {
 }
 
 function mapStateToProps({ categories, posts, router }, { match }) {
-  const { id } = match.params;
+  const { post_id } = match.params;
   return {
     categories,
-    post: find(posts, { id }),
+    post: find(posts, { id: post_id }),
    };
 }
 
