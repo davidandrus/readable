@@ -9,17 +9,22 @@ import { Card } from 'antd';
 import PostButtons from '../components/PostButtons';
 import deletePost from '../actions/deletePost';
 import loadComments from '../actions/loadComments';
+import loadPosts from '../actions/loadPosts';
 
 class Post extends Component {
-  componentDidMount() {
+  componentDidUpdate() {
     const {
       actions: {
         loadComments,
-      }
+        loadPosts,
+      },
+      post,
     } = this.props;
-
-    const post_id = get(this, 'props.post.id');
-    loadComments(post_id);
+  
+    
+    loadPosts().then(() => {
+      loadComments(get(post, 'id'));
+    });
   }
 
   render() {
@@ -39,10 +44,12 @@ class Post extends Component {
       <div style={{ width: '100%' }}>
         <h1 style={{ marginBottom: 20 }}>{title}</h1>
         <div style={{ fontSize: 18, marginBottom: 30 }}>{body}</div>
-        <PostButtons
-          id={id}
-          onDelete={onDelete}
-        />
+        <div style={{marginBottom: 20}}>
+          <PostButtons
+            id={id}
+            onDelete={onDelete}
+          />
+        </div>
         <h2 style={{ marginBottom: 10 }} >Comments</h2>
         {comments.map(({ body }) => {
           return <Card style={{marginBottom: 5 }}>{body}</Card>
@@ -65,10 +72,10 @@ function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({ 
       loadComments,
+      loadPosts,
       onDelete: id => deletePost(id),
     }, dispatch),
   }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post);
