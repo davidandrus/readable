@@ -6,8 +6,6 @@ import { connect } from 'react-redux';
 import createPost from '../actions/createPost';
 import CreateEditPostForm from '../forms/CreateEditPostForm';
 
-// @TODO - lots of redundancy between this and edit
-
 function PostCreate({ categories, actions }) {
   return (
     <div>

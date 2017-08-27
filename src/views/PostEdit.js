@@ -7,8 +7,6 @@ import find from 'lodash/find';
 import editPost from '../actions/editPost';
 import CreateEditPostForm from '../forms/CreateEditPostForm';
 
-// @TODO - lots of redundancy between this and create
-
 function PostEdit({ categories, actions, post }) {
   return ( 
     <div>

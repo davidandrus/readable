@@ -19,7 +19,6 @@ import {
 import store from './store';
 import history from './history';
 
-import Root from './views/Root';
 import Category from './views/Category';
 import Post from './views/Post';
 import PostCreate from './views/PostCreate';
@@ -63,8 +62,8 @@ class App extends Component {
               </Sider>
               <Layout style={{padding: 25}}>
                 <Content style={{padding: 25, background: '#fff' }}>
-                  <Route exact path="/" component={Root} />
-                  <Route exact path="/category" component={Category} />
+                  <Route exact path="/" component={Category} />
+                  <Route exact path="/:category" component={Category} />
                   <Route exact path="/post" component={Post} />
                   <Route exact path="/post/create" component={PostCreate} />
                   <Route exact path="/post/edit/:id" component={PostEdit} />

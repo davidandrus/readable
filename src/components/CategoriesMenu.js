@@ -9,7 +9,7 @@ function CategoriesList({ categories }) {
       {categories.map(category => (
           <Menu.Item key={category.name}>
             <Link 
-              to={`/category/${category.path}`}
+              to={`/${category.path}`}
               key={category.name}
             > 
               {category.name}
