@@ -38,23 +38,23 @@ const standardDelete = (endpoint, id) => standardRequest(endpoint, {
   headers: { 'Content-Type': 'application/text' },
 });
 
-function getCategories() {
-  return standardGet('categories')
-    .then(({ categories }) => categories);
-}
+const createPost = (params) => standardPost('posts', {
+  ...params,
+  id: `${Math.random()}`,
+  timestamp: Date.now(),
+});
 
-function getPosts() {
-  return standardGet('posts')
-}
 
-function createPost(params) {
-  return standardPost('posts', {
-    ...params,
-    id: `${Math.random()}`,
-    timestamp: Date.now(),
+const getCategories = () =>  standardGet('categories')
+  .then(({ categories }) => categories);
+const getPosts = () => standardGet('posts');
+const getComments = (id) => standardGet(`posts/${id}/comments`)
+  .then(comments => {
+    return {
+      comments,
+      post_id: id,
+    };
   });
-}
-
 const editPost = (id, params) => standardPut(`posts/${id}`, params);
 const deletePost = (id) => standardDelete(`posts/${id}`);
 const upVote = (id) => standardPost(`posts/${id}`, { option: 'upVote' });
@@ -65,6 +65,7 @@ export {
   deletePost,
   editPost,
   getCategories,
+  getComments,
   getPosts,
   upVote,
   downVote,
