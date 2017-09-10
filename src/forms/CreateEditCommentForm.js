@@ -18,14 +18,15 @@ const standardInputStyle = {
 
 const { Option } = Select;
 
-const CreateEditPostForm = (props) => {
+const CreateEditCommentForm = (props) => {
   const {
+    context,
     handleSubmit,
     pristine,
     reset,
     submitting,
   } = props;
-
+  
   return (
     <form onSubmit={handleSubmit}>
       <label>
@@ -51,7 +52,10 @@ const CreateEditPostForm = (props) => {
         htmlType="submit"
         type="primary"
       >
-        CreateComment
+        {context === 'edit'
+          ? 'Update Comment'
+          : 'Create Comment'
+        }
       </Button>
     </form>
   )
@@ -59,7 +63,7 @@ const CreateEditPostForm = (props) => {
 
 const Form = reduxForm({
   form: 'createComment',
-})(CreateEditPostForm);
+})(CreateEditCommentForm);
 
 function mapStateToProps(state, ownProps) {
   return {

@@ -6,7 +6,7 @@ import {
   Button,
 } from 'antd';
 
-import PostButtons from './PostButtons';
+import EditDeleteButtons from './EditDeleteButtons';
 
 export default function PostTeaser({
   onDelete,
@@ -25,7 +25,7 @@ export default function PostTeaser({
 }) {
 
   const dateString = new Date(timestamp).toLocaleDateString('en-US');
-  const titleElem = <Link to={`${category}/${id}`}>{title}</Link>;
+  const titleElem = <Link to={`/post/${id}`}>{title}</Link>;
 
   return (
     <div style={{display: 'flex', marginBottom: 30 }}>
@@ -56,7 +56,8 @@ export default function PostTeaser({
               Posted On: <strong>{dateString}</strong>
             </div>
             <div style={{marginBottom: 20}}><strong>{comments.length} Comments</strong></div>
-            <PostButtons
+            <EditDeleteButtons
+              editUrl={`/post/edit/${id}`}
               id={id}
               onDelete={onDelete}
             />

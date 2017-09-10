@@ -8,11 +8,16 @@ import {
 
 const { Group: ButtonGroup } = Button;
 
-export default function({ id, onDelete}) {
+export default function EditDeleteButtons({ id, onDelete, editUrl }) {
+  console.log('rendering Edit', {
+    id,
+    onDelete,
+    editUrl,
+  })
   return (
     <ButtonGroup>
       <Button type="primary">
-        <Link to={`/post/edit/${id}`}>
+        <Link to={editUrl}>
           <Icon type="edit" />
           Edit
         </Link>

@@ -95,7 +95,7 @@ const Form = reduxForm({
 function mapStateToProps(state, ownProps) {
   return {
     initialValues: ownProps.post,
-  }
+  };
 }
 
 export default connect(mapStateToProps)(Form)

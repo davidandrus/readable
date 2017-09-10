@@ -23,6 +23,7 @@ import Category from './views/Category';
 import Post from './views/Post';
 import PostCreate from './views/PostCreate';
 import PostEdit from './views/PostEdit';
+import CommentEdit from './views/CommentEdit';
 
 import CategoriesMenu from './components/CategoriesMenu'
 
@@ -66,6 +67,7 @@ class App extends Component {
                   <Route exact path="/:category/:post_id" component={Post} />
                   <Route exact path="/post/create" component={PostCreate} />
                   <Route exact path="/post/edit/:post_id" component={PostEdit} />
+                  <Route exact path="/comment/edit/:comment_id" component={CommentEdit} />
                 </Content>
               </Layout>
             </Layout>
