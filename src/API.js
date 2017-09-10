@@ -38,29 +38,38 @@ const standardDelete = (endpoint, id) => standardRequest(endpoint, {
   headers: { 'Content-Type': 'application/text' },
 });
 
-const createPost = (params) => standardPost('posts', {
-  ...params,
-  id: `${Math.random()}`,
+const getCommonPostProps = () => ({
+  id: `${Math.random()}`, //@TODO - update to use library or something
   timestamp: Date.now(),
 });
 
+const createPost = (params) => standardPost('posts', {
+  ...params,
+  ...getCommonPostProps(),
+});
+
+const createComment = (params) => standardPost('comments', {
+  ...params,
+  ...getCommonPostProps(),
+});
 
 const getCategories = () =>  standardGet('categories')
   .then(({ categories }) => categories);
+
 const getPosts = () => standardGet('posts');
 const getComments = (id) => standardGet(`posts/${id}/comments`)
-  .then(comments => {
-    return {
+  .then(comments => ({
       comments,
       post_id: id,
-    };
-  });
+    }));
+
 const editPost = (id, params) => standardPut(`posts/${id}`, params);
 const deletePost = (id) => standardDelete(`posts/${id}`);
 const upVote = (id) => standardPost(`posts/${id}`, { option: 'upVote' });
 const downVote = (id) => standardPost(`posts/${id}`, { option: 'downVote' });
 
 export {
+  createComment,
   createPost,
   deletePost,
   editPost,

@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 import { Card } from 'antd';
 
 import PostButtons from '../components/PostButtons';
+import createComment from '../actions/createComment';
 import deletePost from '../actions/deletePost';
 import loadComments from '../actions/loadComments';
 import loadPosts from '../actions/loadPosts';
@@ -20,9 +21,12 @@ function Post({
   } = {},
   comments,
   actions: {
+    createComment,
     onDelete,
   }
 }) {
+
+
   return (
     <div style={{ width: '100%' }}>
       <h1 style={{ marginBottom: 20 }}>{title}</h1>
@@ -34,11 +38,32 @@ function Post({
         />
       </div>
       <h2 style={{ marginBottom: 10 }} >Comments</h2>
-      {comments.map(({ body }) => {
-        return <Card style={{marginBottom: 5 }}>{body}</Card>
+      {comments.map(({
+        body,
+        id,
+        author,
+        timestamp,
+      }) => {
+        // @TODO - break into helper since it is used multiple times
+        const dateString = new Date(timestamp).toLocaleDateString('en-US');
+
+        return (
+          <Card 
+            key={id}
+            style={{ marginBottom: 5 }}
+          >
+            <div style={{marginBottom: 20}}>{body}</div>
+            <div>
+              Posted By: <strong>{author}</strong>
+            </div>
+            <div>
+              Posted On: <strong>{dateString}</strong>
+            </div>
+          </Card>
+        );
       })}
       <Card title='Add a Comment'>
-        <AddEditCommentForm />
+        <AddEditCommentForm onSubmit={comment => createComment(id, comment)} />
       </Card>
     </div>
   );
@@ -56,6 +81,7 @@ function mapStateToProps({ posts, comments }, { match }) {
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators({ 
+      createComment,
       loadComments,
       loadPosts,
       onDelete: id => deletePost(id),
