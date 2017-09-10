@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 import { Card } from 'antd';
 
 import PostButtons from '../components/PostButtons';
+import CommentsList from '../components/CommentsList';
 import createComment from '../actions/createComment';
 import deletePost from '../actions/deletePost';
 import loadComments from '../actions/loadComments';
@@ -38,30 +39,7 @@ function Post({
         />
       </div>
       <h2 style={{ marginBottom: 10 }} >Comments</h2>
-      {comments.map(({
-        body,
-        id,
-        author,
-        timestamp,
-      }) => {
-        // @TODO - break into helper since it is used multiple times
-        const dateString = new Date(timestamp).toLocaleDateString('en-US');
-
-        return (
-          <Card 
-            key={id}
-            style={{ marginBottom: 5 }}
-          >
-            <div style={{marginBottom: 20}}>{body}</div>
-            <div>
-              Posted By: <strong>{author}</strong>
-            </div>
-            <div>
-              Posted On: <strong>{dateString}</strong>
-            </div>
-          </Card>
-        );
-      })}
+      <CommentsList comments={comments} />
       <Card title='Add a Comment'>
         <AddEditCommentForm onSubmit={comment => createComment(id, comment)} />
       </Card>
