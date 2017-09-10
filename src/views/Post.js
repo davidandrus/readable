@@ -10,6 +10,7 @@ import PostButtons from '../components/PostButtons';
 import deletePost from '../actions/deletePost';
 import loadComments from '../actions/loadComments';
 import loadPosts from '../actions/loadPosts';
+import AddEditCommentForm from '../forms/AddEditCommentForm';
 
 function Post({
   post: {
@@ -36,6 +37,9 @@ function Post({
       {comments.map(({ body }) => {
         return <Card style={{marginBottom: 5 }}>{body}</Card>
       })}
+      <Card title='Add a Comment'>
+        <AddEditCommentForm />
+      </Card>
     </div>
   );
 }
