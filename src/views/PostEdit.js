@@ -13,7 +13,7 @@ function PostEdit({ categories, actions, post }) {
       <h1>Edit Post</h1>
       <CreateEditPostForm
         categories={categories}
-        onSubmit={(params) => actions.editPost(params.id, params)}
+        onSubmit={actions.editPost}
         post={post}
         context="edit"
       />

@@ -63,8 +63,9 @@ const getComments = (id) => standardGet(`posts/${id}/comments`)
       post_id: id,
     }));
 
-const editPost = (id, params) => standardPut(`posts/${id}`, params);
+const editPost = (params) => standardPut(`posts/${params.id}`, params);
 const deletePost = (id) => standardDelete(`posts/${id}`);
+const editComment = (params) => standardPut(`comments/${params.id}`, params);
 const upVote = (id) => standardPost(`posts/${id}`, { option: 'upVote' });
 const downVote = (id) => standardPost(`posts/${id}`, { option: 'downVote' });
 
@@ -72,6 +73,7 @@ export {
   createComment,
   createPost,
   deletePost,
+  editComment,
   editPost,
   getCategories,
   getComments,

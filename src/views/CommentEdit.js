@@ -6,7 +6,7 @@ import flatten from 'lodash/flatten';
 import values from 'lodash/values';
 import find from 'lodash/find';
 
-import createPost from '../actions/createPost';
+import editComment from '../actions/editComment';
 import CreateEditCommentForm from '../forms/CreateEditCommentForm';
 
 function CommentEdit({ categories, actions, comment }) {
@@ -36,7 +36,7 @@ function mapStateToProps({ comments }, { match }) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({ createPost }, dispatch),
+    actions: bindActionCreators({ editComment }, dispatch),
   }
 }
 

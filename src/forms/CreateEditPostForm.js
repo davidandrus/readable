@@ -60,7 +60,7 @@ const CreateEditPostForm = (props) => {
         Author
         <Field
           component={TextField}
-          name="owner"
+          name="author"
           size='large'
           style={standardInputStyle}
         />

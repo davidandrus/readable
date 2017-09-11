@@ -17,6 +17,7 @@ export default function CommentsList({ comments }) {
 
         return (
           <Card 
+            id={id}
             key={id}
             style={{ marginBottom: 5 }}
           >
