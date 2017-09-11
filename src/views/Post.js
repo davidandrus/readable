@@ -14,8 +14,8 @@ import deletePost from '../actions/deletePost';
 import deleteComment from '../actions/deleteComment';
 import loadComments from '../actions/loadComments';
 import loadPosts from '../actions/loadPosts';
-import upVote from '../actions/upVote';
-import downVote from '../actions/downVote';
+import upVotePost from '../actions/upVotePost';
+import downVotePost from '../actions/downVotePost';
 import CreateEditCommentForm from '../forms/CreateEditCommentForm';
 
 const WRAPPER_STYLE = {
@@ -50,16 +50,16 @@ function Post({
     createComment,
     deleteComment,
     deletePost,
-    upVote,
-    downVote,
+    upVotePost,
+    downVotePost,
   }
 }) {
   return (
     <div style={WRAPPER_STYLE}>
       <div style={VOTE_WRAPPER_STYLE}>
         <VoteControl
-          onUpVote={() => upVote(id)}
-          onDownVote={() => downVote(id)}
+          onUpVote={() => upVotePost(id)}
+          onDownVote={() => downVotePost(id)}
           voteScore={voteScore}
         />
       </div>
@@ -103,10 +103,10 @@ function mapDispatchToProps(dispatch) {
       createComment,
       deletePost,
       deleteComment,
-      downVote,
+      downVotePost,
       loadComments,
       loadPosts,
-      upVote,
+      upVotePost,
     }, dispatch),
   }
 }

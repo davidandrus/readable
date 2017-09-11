@@ -6,8 +6,8 @@ import { Button } from 'antd';
 import { Link } from 'react-router-dom';
 import get from 'lodash/get';
 
-import upVote from '../actions/upVote';
-import downVote from '../actions/downVote';
+import upVotePost from '../actions/upVotePost';
+import downVotePost from '../actions/downVotePost';
 import deletePost from '../actions/deletePost';
 
 import PostList from '../components/PostList';
@@ -22,8 +22,8 @@ function Category({
       <PostList
         comments={comments}
         posts={posts}
-        onUpVote={actions.upVote}
-        onDownVote={actions.downVote}
+        onUpVote={actions.upVotePost}
+        onDownVote={actions.downVotePost}
         onDelete={actions.deletePost}
       />
       <Link to="/post/create">
@@ -40,8 +40,8 @@ function Category({
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({
     deletePost,
-    upVote,
-    downVote,
+    upVotePost,
+    downVotePost,
   }, dispatch),
 });
 

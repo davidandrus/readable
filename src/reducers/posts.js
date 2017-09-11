@@ -4,8 +4,8 @@ import {
   CREATE_POST,
   DELETE_POST,
   EDIT_POST,
-  UPVOTE,
-  DOWNVOTE,
+  UPVOTE_POST,
+  DOWNVOTE_POST,
 } from '../actions/actionNames';
 
 const addOrReplacePost = (state, { payload }) => state
@@ -20,7 +20,7 @@ export default handleActions({
     deleted: post.id === payload || post.deleted,
   })),
   [EDIT_POST.FULFILLED]: addOrReplacePost,
-  [UPVOTE.FULFILLED]: addOrReplacePost,
-  [DOWNVOTE.FULFILLED]: addOrReplacePost,
+  [UPVOTE_POST.FULFILLED]: addOrReplacePost,
+  [DOWNVOTE_POST.FULFILLED]: addOrReplacePost,
 }, []);
 

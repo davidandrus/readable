@@ -69,8 +69,8 @@ const editComment = (params) => standardPut(`comments/${params.id}`, params);
 const deleteComment = (id) => standardDelete(`comments/${id}`)
   // slightly funky since comment deletion returns json payload while deleting post does not
   .then(res => res.json());
-const upVote = (id) => standardPost(`posts/${id}`, { option: 'upVote' });
-const downVote = (id) => standardPost(`posts/${id}`, { option: 'downVote' });
+const upVotePost = (id) => standardPost(`posts/${id}`, { option: 'upVote' });
+const downVotePost = (id) => standardPost(`posts/${id}`, { option: 'downVote' });
 
 export {
   createComment,
@@ -82,6 +82,6 @@ export {
   getCategories,
   getComments,
   getPosts,
-  upVote,
-  downVote,
+  upVotePost,
+  downVotePost,
 }
