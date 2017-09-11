@@ -1,6 +1,8 @@
 import React from 'react';
 import { Card } from 'antd';
 
+
+import { formatDate } from '../helpers';
 import EditDeleteButtons from './EditDeleteButtons';
 
 export default function CommentsList({
@@ -15,10 +17,8 @@ export default function CommentsList({
         id,
         author,
         timestamp,
+        voteScore,
       }) => {
-        // @TODO - break into helper since it is used multiple times
-        const dateString = new Date(timestamp).toLocaleDateString('en-US');
-
         return (
           <Card 
             id={id}
@@ -29,8 +29,11 @@ export default function CommentsList({
             <div> 
               Posted By: <strong>{author}</strong>
             </div>
+            <div> 
+              Vote Score: <strong>{voteScore}</strong>
+            </div>
             <div style={{ marginBottom: 20 }}>
-              Posted On: <strong>{dateString}</strong>
+              Posted: <strong>{formatDate(timestamp)}</strong>
             </div>
             <EditDeleteButtons
               id={id}
