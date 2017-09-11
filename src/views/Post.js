@@ -58,6 +58,9 @@ function Post({
     downVotePost,
   }
 }) {
+  // this is kind of nasty, but prevents post from rendering on /post/create
+  if (!id) { return null; }
+
   return (
     <div style={WRAPPER_STYLE}>
       <div style={VOTE_WRAPPER_STYLE}>

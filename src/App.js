@@ -63,11 +63,11 @@ class App extends Component {
               <Layout style={{padding: 25}}>
                 <Content style={{padding: 25, background: '#fff' }}>
                   <Route exact path="/" component={Category} />
-                  <Route exact path="/:category" component={Category} />
-                  <Route exact path="/:category/:post_id" component={Post} />
                   <Route exact path="/post/create" component={PostCreate} />
                   <Route exact path="/post/edit/:post_id" component={PostEdit} />
                   <Route exact path="/comment/edit/:comment_id" component={CommentEdit} />
+                  <Route exact path="/:category" component={Category} />
+                  <Route exact path="/:category/:post_id" component={Post} />
                 </Content>
               </Layout>
             </Layout>

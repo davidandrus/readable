@@ -1,6 +1,7 @@
 import { handleActions } from 'redux-actions';
 import {
   CREATE_COMMENT,
+  CREATE_POST,
   DELETE_COMMENT,
   DOWNVOTE_COMMENT,
   EDIT_COMMENT,
@@ -20,6 +21,11 @@ function updateComment(state, { payload }) {
 }
 
 export default handleActions({
+  // add empty comments array when new post created
+  [CREATE_POST.FULFILLED]: (state, { payload }) => ({
+    ...state,
+    [payload.id]: [],
+  }),
   [CREATE_COMMENT.FULFILLED]: (state, { payload }) => {
     const { parentId } = payload;
     return {
