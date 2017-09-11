@@ -17,9 +17,9 @@ export default function PostList({
             comments: comments[post.id],
           }}
           key={post.id}
-          onDelete={onDelete}
-          onUpVote={onUpVote}
-          onDownVote={onDownVote}
+          onDelete={() => onDelete(post.id)}
+          onUpVote={() => onUpVote(post.id)}
+          onDownVote={() => onDownVote(post.id)}
         />
       ))}
     </div>

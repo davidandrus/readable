@@ -8,12 +8,7 @@ import {
 
 const { Group: ButtonGroup } = Button;
 
-export default function EditDeleteButtons({ id, onDelete, editUrl }) {
-  console.log('rendering Edit', {
-    id,
-    onDelete,
-    editUrl,
-  })
+export default function EditDeleteButtons({ onDelete, editUrl }) {
   return (
     <ButtonGroup>
       <Button type="primary">
@@ -22,7 +17,10 @@ export default function EditDeleteButtons({ id, onDelete, editUrl }) {
           Edit
         </Link>
       </Button>
-      <Button type="danger" onClick={() => onDelete(id)}>
+      <Button
+        type="danger"
+        onClick={onDelete}
+      >
         <Icon type="delete" />
         Delete
       </Button>

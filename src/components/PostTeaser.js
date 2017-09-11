@@ -1,14 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {
-  Card,
-  Button,
-} from 'antd';
+import { Card } from 'antd';
 
 import { formatDate } from '../helpers';
 
 import EditDeleteButtons from './EditDeleteButtons';
+import VoteControl from './VoteControl';
 
 export default function PostTeaser({
   onDelete,
@@ -25,20 +23,15 @@ export default function PostTeaser({
     voteScore,
   },
 }) {
-
   const titleElem = <Link to={`/post/${id}`}>{title}</Link>;
 
   return (
     <div style={{display: 'flex', marginBottom: 30 }}>
       <div style={{display: 'flex', width: 50, flexDirection: 'column', alignItems: 'center', fontSize: 30, marginRight: 20}}>
-        <Button
-          icon="caret-up"
-          onClick={() => onUpVote(id)}
-          />
-        {voteScore}
-        <Button 
-          icon="caret-down"
-          onClick={() => onDownVote(id)}
+        <VoteControl
+          onUpVote={onUpVote}
+          onDownVote={onDownVote}
+          voteScore={voteScore}
         />
       </div>
       <div style={{flex: '1 1 20000px'}}>
