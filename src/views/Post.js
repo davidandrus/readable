@@ -10,6 +10,7 @@ import EditDeleteButtons from '../components/EditDeleteButtons';
 import CommentsList from '../components/CommentsList';
 import createComment from '../actions/createComment';
 import deletePost from '../actions/deletePost';
+import deleteComment from '../actions/deleteComment';
 import loadComments from '../actions/loadComments';
 import loadPosts from '../actions/loadPosts';
 import CreateEditCommentForm from '../forms/CreateEditCommentForm';
@@ -23,7 +24,8 @@ function Post({
   comments,
   actions: {
     createComment,
-    onDelete,
+    deleteComment,
+    deletePost,
   }
 }) {
   return (
@@ -34,11 +36,14 @@ function Post({
         <EditDeleteButtons
           editUrl={`/post/edit/${id}`}
           id={id}
-          onDelete={onDelete}
+          onDelete={deletePost}
         />
       </div>
       <h2 style={{ marginBottom: 10 }} >Comments</h2>
-      <CommentsList comments={comments} />
+      <CommentsList 
+        comments={comments}
+        onDeleteComment={deleteComment}
+      />
       <Card title='Add a Comment'>
         <CreateEditCommentForm
           context="create"
@@ -63,7 +68,8 @@ function mapDispatchToProps(dispatch) {
       createComment,
       loadComments,
       loadPosts,
-      onDelete: id => deletePost(id),
+      deletePost,
+      deleteComment,
     }, dispatch),
   }
 }

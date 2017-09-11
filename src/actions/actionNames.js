@@ -1,3 +1,4 @@
+// this is the format that redux-promise-middleware expects
 const makeAsyncAction = (name) => ({
   STANDARD: name,
   PENDING: `${name}_PENDING`,
@@ -11,7 +12,8 @@ export const LOAD_COMMENTS = makeAsyncAction('LOAD_COMMENTS');
 export const CREATE_POST = makeAsyncAction('CREATE_POST');
 export const EDIT_POST = makeAsyncAction('EDIT_POST');
 export const DELETE_POST = makeAsyncAction('DELETE_POST');
-export const CREATE_COMMENT = makeAsyncAction('CREATE_COMMENT');
-export const EDIT_COMMENT = makeAsyncAction('EDIT_COMMENT');
 export const UPVOTE = makeAsyncAction('UPVOTE');
 export const DOWNVOTE = makeAsyncAction('DOWNVOTE');
+export const CREATE_COMMENT = makeAsyncAction('CREATE_COMMENT');
+export const EDIT_COMMENT = makeAsyncAction('EDIT_COMMENT');
+export const DELETE_COMMENT = makeAsyncAction('DELETE_COMMENT');

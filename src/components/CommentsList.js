@@ -3,7 +3,11 @@ import { Card } from 'antd';
 
 import EditDeleteButtons from './EditDeleteButtons';
 
-export default function CommentsList({ comments }) {
+export default function CommentsList({
+  comments,
+  actions,
+  onDeleteComment,
+}) {
   return (
     <div>
       {comments.map(({
@@ -29,6 +33,8 @@ export default function CommentsList({ comments }) {
               Posted On: <strong>{dateString}</strong>
             </div>
             <EditDeleteButtons
+              id={id}
+              onDelete={onDeleteComment}
               editUrl={`/comment/edit/${id}`}
             />
           </Card>

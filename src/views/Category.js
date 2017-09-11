@@ -1,4 +1,5 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
 import sortBy from 'lodash/sortBy';
 import { connect } from 'react-redux';
 import { Button } from 'antd';
@@ -21,9 +22,9 @@ function Category({
       <PostList
         comments={comments}
         posts={posts}
-        onUpVote={actions.onUpVote}
-        onDownVote={actions.onDownVote}
-        onDelete={actions.onDelete}
+        onUpVote={actions.upVote}
+        onDownVote={actions.downVote}
+        onDelete={actions.deletePost}
       />
       <Link to="/post/create">
         <Button
@@ -37,11 +38,11 @@ function Category({
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: {
-    onDelete: id => dispatch(deletePost(id)),
-    onUpVote: id => dispatch(upVote(id)),
-    onDownVote: id => dispatch(downVote(id)),
-  },
+  actions: bindActionCreators({
+    deletePost,
+    upVote,
+    downVote,
+  }, dispatch),
 });
 
 const mapStateToProps = ({ posts, comments }, { match }) => {
