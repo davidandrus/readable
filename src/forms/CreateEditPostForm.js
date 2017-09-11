@@ -5,10 +5,7 @@ import {
   reduxForm,
 } from 'redux-form';
 
-import {
-  Button,
-  Select,
-} from 'antd';
+import { Button } from 'antd';
 
 import {
   SelectField,
@@ -18,8 +15,6 @@ import {
 const standardInputStyle = {
   width: '100%',
 };
-
-const { Option } = Select;
 
 const CreateEditPostForm = (props) => {
   const {
