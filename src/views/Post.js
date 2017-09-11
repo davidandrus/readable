@@ -14,7 +14,9 @@ import deletePost from '../actions/deletePost';
 import deleteComment from '../actions/deleteComment';
 import loadComments from '../actions/loadComments';
 import loadPosts from '../actions/loadPosts';
+import upVoteComment from '../actions/upVoteComment';
 import upVotePost from '../actions/upVotePost';
+import downVoteComment from '../actions/downVoteComment';
 import downVotePost from '../actions/downVotePost';
 import CreateEditCommentForm from '../forms/CreateEditCommentForm';
 
@@ -50,7 +52,9 @@ function Post({
     createComment,
     deleteComment,
     deletePost,
+    upVoteComment,
     upVotePost,
+    downVoteComment,
     downVotePost,
   }
 }) {
@@ -77,6 +81,8 @@ function Post({
         <CommentsList 
           comments={comments}
           onDeleteComment={deleteComment}
+          onUpVoteComment={upVoteComment}
+          onDownVoteComment={downVoteComment}
         />
         <Card title='Add a Comment'>
           <CreateEditCommentForm
@@ -103,9 +109,11 @@ function mapDispatchToProps(dispatch) {
       createComment,
       deletePost,
       deleteComment,
+      downVoteComment,
       downVotePost,
       loadComments,
       loadPosts,
+      upVoteComment,
       upVotePost,
     }, dispatch),
   }

@@ -26,8 +26,9 @@ const BODY_WRAPPER_STYLE = {
 
 export default function CommentsList({
   comments,
-  actions,
   onDeleteComment,
+  onUpVoteComment,
+  onDownVoteComment,
 }) {
   return (
     <div>
@@ -47,8 +48,8 @@ export default function CommentsList({
             <div style={WRAPPER_STYLE}>
               <div style={VOTE_CONTROL_WRAPPER_STYLE}>
               <VoteControl
-                onUpVote={() => {}}
-                onDownVote={() => {}}
+                onUpVote={() => onUpVoteComment(id)}
+                onDownVote={() => onDownVoteComment(id)}
                 voteScore={voteScore}
               />
               </div>
@@ -56,9 +57,6 @@ export default function CommentsList({
                 <div style={ {marginBottom: 20 }}>{body}</div>
                 <div> 
                   Posted By: <strong>{author}</strong>
-                </div>
-                <div> 
-                  Vote Score: <strong>{voteScore}</strong>
                 </div>
                 <div style={{ marginBottom: 20 }}>
                   Posted: <strong>{formatDate(timestamp)}</strong>

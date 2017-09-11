@@ -43,16 +43,6 @@ const getCommonPostProps = () => ({
   timestamp: Date.now(),
 });
 
-const createPost = (params) => standardPost('posts', {
-  ...params,
-  ...getCommonPostProps(),
-});
-
-const createComment = (params) => standardPost('comments', {
-  ...params,
-  ...getCommonPostProps(),
-});
-
 const getCategories = () =>  standardGet('categories')
   .then(({ categories }) => categories);
 
@@ -63,14 +53,25 @@ const getComments = (id) => standardGet(`posts/${id}/comments`)
       post_id: id,
     }));
 
+const createPost = (params) => standardPost('posts', {
+  ...params,
+  ...getCommonPostProps(),
+});
 const editPost = (params) => standardPut(`posts/${params.id}`, params);
 const deletePost = (id) => standardDelete(`posts/${id}`);
+const upVotePost = (id) => standardPost(`posts/${id}`, { option: 'upVote' });
+const downVotePost = (id) => standardPost(`posts/${id}`, { option: 'downVote' });
+
+const createComment = (params) => standardPost('comments', {
+  ...params,
+  ...getCommonPostProps(),
+});
 const editComment = (params) => standardPut(`comments/${params.id}`, params);
 const deleteComment = (id) => standardDelete(`comments/${id}`)
   // slightly funky since comment deletion returns json payload while deleting post does not
   .then(res => res.json());
-const upVotePost = (id) => standardPost(`posts/${id}`, { option: 'upVote' });
-const downVotePost = (id) => standardPost(`posts/${id}`, { option: 'downVote' });
+const upVoteComment = (id) => standardPost(`comments/${id}`, { option: 'upVote' });
+const downVoteComment = (id) => standardPost(`comments/${id}`, { option: 'downVote' });
 
 export {
   createComment,
@@ -82,6 +83,8 @@ export {
   getCategories,
   getComments,
   getPosts,
+  upVoteComment,
   upVotePost,
+  downVoteComment,
   downVotePost,
 }
