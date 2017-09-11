@@ -93,7 +93,7 @@ function mapStateToProps({ posts, comments }, { match }) {
 
   return {
     post: find(posts, { id: post_id }), 
-    comments: sortBy(get(comments, post_id, []), 'timestamp'),
+    comments: sortBy(get(comments, post_id, []), 'voteScore').reverse(),
   }
 }
 
