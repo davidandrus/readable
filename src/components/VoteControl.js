@@ -6,7 +6,9 @@ const WRAPPER_STYLE = {
   alignItems: 'center',
   display: 'flex',
   flexDirection: 'column',
+  fontSize: 36
 };
+const VOTE_SCORE_STYLE = { fontSize: 24 };
 
 export default function VoteControl({
   onDownVote,
@@ -19,7 +21,9 @@ export default function VoteControl({
         icon="caret-up"
         onClick={onUpVote}
         />
-      {voteScore}
+      <div style={VOTE_SCORE_STYLE}>
+        {voteScore}
+      </div>
       <Button 
         icon="caret-down"
         onClick={onDownVote}

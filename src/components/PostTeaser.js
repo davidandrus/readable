@@ -8,6 +8,32 @@ import { formatDate } from '../helpers';
 import EditDeleteButtons from './EditDeleteButtons';
 import VoteControl from './VoteControl';
 
+const WRAPPER_STYLE = {
+  display: 'flex',
+  marginBottom: 20,
+  marginLeft: -20,
+};
+const VOTE_CONTROL_WRAPPER_STYLE = {
+  alignItems: 'center',
+  display: 'flex', 
+  flex: '0 0 75px', 
+  flexDirection: 'column', 
+  fontSize: 30,
+};
+const POST_WRAPPER_STYLE = {
+  flex: '1 1 20000px',
+};
+const POST_BODY_WRAPPER_STYLE = {
+  display: 'flex',
+  flexDirection: 'column',
+};
+const POST_BODY_STYLE = {
+  marginBottom: 20,
+};
+const EDIT_BUTTONS_WRAPPER_STYLE = {
+  marginTop: 20,
+};
+
 export default function PostTeaser({
   onDelete,
   onDownVote,
@@ -26,18 +52,18 @@ export default function PostTeaser({
   const titleElem = <Link to={`/post/${id}`}>{title}</Link>;
 
   return (
-    <div style={{display: 'flex', marginBottom: 30 }}>
-      <div style={{display: 'flex', width: 50, flexDirection: 'column', alignItems: 'center', fontSize: 30, marginRight: 20}}>
+    <div style={WRAPPER_STYLE}>
+      <div style={VOTE_CONTROL_WRAPPER_STYLE}>
         <VoteControl
           onUpVote={onUpVote}
           onDownVote={onDownVote}
           voteScore={voteScore}
         />
       </div>
-      <div style={{flex: '1 1 20000px'}}>
+      <div style={POST_WRAPPER_STYLE}>
         <Card title={titleElem}>
-          <div style={{display: 'flex', flexDirection: 'column'}}>
-            <div style={{marginBottom: 20}}>
+          <div style={POST_BODY_WRAPPER_STYLE}>
+            <div style={POST_BODY_STYLE}>
               {body}
             </div>
             <div>
@@ -49,12 +75,14 @@ export default function PostTeaser({
             <div>
               Posted: <strong>{formatDate(timestamp)}</strong>
             </div>
-            <div style={{marginBottom: 20}}><strong>{comments.length} Comments</strong></div>
-            <EditDeleteButtons
-              editUrl={`/post/edit/${id}`}
-              id={id}
-              onDelete={onDelete}
-            />
+            <div><strong>{comments.length} Comments</strong></div>
+            <div style={EDIT_BUTTONS_WRAPPER_STYLE}>
+              <EditDeleteButtons
+                editUrl={`/post/edit/${id}`}
+                id={id}
+                onDelete={onDelete}
+              />
+            </div>
           </div>
         </Card>
       </div>
