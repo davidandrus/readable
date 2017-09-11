@@ -9,6 +9,7 @@ import get from 'lodash/get';
 import upVotePost from '../actions/upVotePost';
 import downVotePost from '../actions/downVotePost';
 import deletePost from '../actions/deletePost';
+import setSort from '../actions/setSort';
 
 import PostList from '../components/PostList';
 import { Select } from 'antd';
@@ -31,34 +32,36 @@ function Category({
   posts,
   comments,
   actions,
+  sort,
 }) {
   return (
     <div>
       <h1 style={TITLE_STYLE}>{category ? `Posts in: ${category}` : 'All Posts'}</h1>
-      {posts.length 
-        ? (
-          <div style={SORT_WRAPPER_STYLE}>
-            <span style={SORT_LABEL_STYLE}>Sort By:</span>
-            <Select defaultValue="timestamp" size="large">
-              <Option value="timestamp">Date Posted</Option>
-              <Option value="voteScore">Vote Score</Option>
-            </Select>
-          </div>
-        )
-        : undefined
-      }
-      {posts.length 
-        ? (
-          <PostList
-            comments={comments}
-            posts={posts}
-            onUpVote={actions.upVotePost}
-            onDownVote={actions.downVotePost}
-            onDelete={actions.deletePost}
-          />
-        )
-        : <h2 style={NO_POSTS_STYLE}>No Posts Found</h2>
-      }
+      {posts.length > 0 && (
+        <div style={SORT_WRAPPER_STYLE}>
+          <span style={SORT_LABEL_STYLE}>Sort By:</span>
+          <Select
+            defaultValue={sort}
+            onChange={actions.setSort}
+            size="large"
+          >
+            <Option value="timestamp">Date Posted</Option>
+            <Option value="voteScore">Vote Score</Option>
+          </Select>
+        </div>
+      )}
+      {posts.length > 0 && (
+        <PostList
+          comments={comments}
+          posts={posts}
+          onUpVote={actions.upVotePost}
+          onDownVote={actions.downVotePost}
+          onDelete={actions.deletePost}
+        />
+      )}
+      {!posts.length && (
+        <h2 style={NO_POSTS_STYLE}>No Posts Yet</h2>
+      )}
       <Link to="/post/create">
         <Button
           type="primary" 
@@ -73,24 +76,33 @@ function Category({
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({
     deletePost,
-    upVotePost,
     downVotePost,
+    setSort,
+    upVotePost,
   }, dispatch),
 });
 
-const mapStateToProps = ({ posts, comments, categories }, { match }) => {
+const mapStateToProps = ({
+  categories,
+  comments,
+  posts,
+  sort
+}, { match }) => {
   const category = get(match, 'params.category');
+  const postsFiltered =  posts
+    .filter(post => !post.deleted)
+    // filter by category if viewing category page
+    .filter(post => category ? category === post.category : true);
+
+  const postsSorted = sort === 'voteScore'
+    ? sortBy(postsFiltered, 'voteScore' ).reverse()
+    : sortBy(postsFiltered, 'timestamp').reverse();
 
   return {
     category,
-    posts: sortBy(
-      posts
-        .filter(post => !post.deleted)
-         // filter by category if viewing category page
-        .filter(post => category ? category === post.category : true),
-      'voteScore'
-    ).reverse(),
     comments,
+    posts: postsSorted,
+    sort,
   };
 };
 

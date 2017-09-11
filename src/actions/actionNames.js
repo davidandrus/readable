@@ -19,4 +19,5 @@ export const EDIT_COMMENT = makeAsyncAction('EDIT_COMMENT');
 export const DELETE_COMMENT = makeAsyncAction('DELETE_COMMENT');
 export const UPVOTE_COMMENT = makeAsyncAction('UPVOTE_COMMENT');
 export const DOWNVOTE_COMMENT = makeAsyncAction('DOWNVOTE_COMMENT');
+export const SET_SORT = 'SET_SORT';
 
