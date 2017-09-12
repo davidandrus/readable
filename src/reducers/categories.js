@@ -1,4 +1,5 @@
 import { handleActions } from 'redux-actions';
+
 import { LOAD_CATEGORIES } from '../actions/actionNames';
 
 export default handleActions({

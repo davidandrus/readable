@@ -1,4 +1,5 @@
 import { handleActions } from 'redux-actions';
+
 import {
   LOAD_POSTS,
   CREATE_POST,
@@ -23,4 +24,3 @@ export default handleActions({
   [UPVOTE_POST.FULFILLED]: addOrReplacePost,
   [DOWNVOTE_POST.FULFILLED]: addOrReplacePost,
 }, []);
-

@@ -23,4 +23,4 @@ it('should add new post to posts when CREATE_POST_FULLFILLED', () => {
   });
 
   expect(subject).toEqual([result]);
-})
+});
