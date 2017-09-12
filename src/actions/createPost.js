@@ -3,7 +3,7 @@ import { push } from 'react-router-redux';
 import { createPost as makePostRequest } from '../API';
 import { CREATE_POST } from './actionNames';
 
-export default function createPost(post) {
+const createPost = (post) => {
   return (dispatch, getState) => {
     dispatch({
       type: CREATE_POST.STANDARD,
@@ -11,5 +11,7 @@ export default function createPost(post) {
     }).then(({ value }) => {
       dispatch(push(`/${value.category}/${value.id}`));
     });
-  }
-}
+  };
+};
+
+export default createPost;

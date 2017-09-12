@@ -4,7 +4,7 @@ import { reset } from 'redux-form';
 import { createComment as makePostRequest } from '../API';
 import { CREATE_COMMENT } from './actionNames';
 
-export default function createComment(postId, comment) {
+const createComment = (postId, comment) => {
   return (dispatch, getState) => {
     const state = getState();
 
@@ -19,5 +19,7 @@ export default function createComment(postId, comment) {
       dispatch(reset('createComment'))
       dispatch(replace(`${pathname}#${value.id}`));
     });
-  }
-}
+  };
+};
+
+export default createComment;

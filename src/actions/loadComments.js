@@ -1,7 +1,7 @@
 import { getComments } from '../API';
 import { LOAD_COMMENTS } from './actionNames';
 
-export default function loadComments() {
+const loadComments = () => {
   return (dispatch, getState) => {
     getState().posts.forEach(({ id }) => {
       dispatch({
@@ -9,5 +9,7 @@ export default function loadComments() {
         payload: getComments(id),
       });
     });
-  }
-}
+  };
+};
+
+export default loadComments;

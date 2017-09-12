@@ -3,7 +3,7 @@ import { push } from 'react-router-redux';
 import { deletePost as makeDeleteRequest } from '../API';
 import { DELETE_POST } from './actionNames';
 
-export default function deletePost(id) {
+const deletePost = (id) => {
   return (dispatch, getState) => {
     const deletedPromise = makeDeleteRequest(id)
       .then(() => id);
@@ -14,5 +14,7 @@ export default function deletePost(id) {
     }).then(() => {
       dispatch(push('/'));
     });
-  }
-}
+  };
+};
+
+export default deletePost;

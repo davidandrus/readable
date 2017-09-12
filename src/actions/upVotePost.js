@@ -1,11 +1,13 @@
 import { upVotePost as makeRequest } from '../API';
 import { UPVOTE_POST } from './actionNames';
 
-export default function upVotePost(id) {
+const upVotePost = (id) => {
   return (dispatch, getState) => {
     dispatch({
       type: UPVOTE_POST.STANDARD,
       payload: makeRequest(id),
     });
-  }
-}
+  };
+};
+
+export default upVotePost;
