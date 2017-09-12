@@ -16,12 +16,11 @@ const standardInputStyle = {
   width: '100%',
 };
 
-const CreateEditPostForm = (props) => {
-  const {
-    handleSubmit,
-    categories,
-    context,
-  } = props;
+const CreateEditPostForm = ({
+  handleSubmit,
+  categories,
+  context,
+}) => {
 
   const categoryOptions = categories.map(({ name }) => ({
     label: name,
@@ -84,10 +83,8 @@ const Form = reduxForm({
   form: 'createPost',
 })(CreateEditPostForm);
 
-function mapStateToProps(state, ownProps) {
-  return {
-    initialValues: ownProps.post,
-  };
-}
+const mapStateToProps = (state, ownProps) => ({
+  initialValues: ownProps.post,
+});
 
-export default connect(mapStateToProps)(Form)
+export default connect(mapStateToProps)(Form);
