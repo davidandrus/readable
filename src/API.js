@@ -43,7 +43,7 @@ const getCommonPostProps = () => ({
   timestamp: Date.now(),
 });
 
-const getCategories = () =>  standardGet('categories')
+const getCategories = () => standardGet('categories')
   .then(({ categories }) => categories);
 
 const getPosts = () => standardGet('posts');

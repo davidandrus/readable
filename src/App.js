@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 
 import {
-  BrowserRouter as Router,
   Route,
   Link,
 } from 'react-router-dom';
@@ -18,15 +17,12 @@ import {
 
 import store from './store';
 import history from './history';
-
 import Category from './views/Category';
 import Post from './views/Post';
 import PostCreate from './views/PostCreate';
 import PostEdit from './views/PostEdit';
 import CommentEdit from './views/CommentEdit';
-
 import CategoriesMenu from './components/CategoriesMenu'
-
 import loadCategories from './actions/loadCategories';
 import loadPosts from './actions/loadPosts';
 
@@ -35,8 +31,6 @@ const {
   Content,
   Sider,
 } = Layout;
-
-// @TODO - eliminate all warnings and errors
 
 class App extends Component {
   componentDidMount() {
