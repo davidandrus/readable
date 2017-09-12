@@ -48,7 +48,7 @@ const PostTeaser = ({
     voteScore,
   },
 }) => {
-  const titleElem = <Link to={`/post/${id}`}>{title}</Link>;
+  const titleElem = <Link to={`/${category}/${id}`}>{title}</Link>;
 
   return (
     <div style={WRAPPER_STYLE}>

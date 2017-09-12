@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import {
   Route,
   Link,
+  Switch,
 } from 'react-router-dom';
 
 import { ConnectedRouter } from 'react-router-redux';
@@ -56,12 +57,14 @@ class App extends Component {
               </Sider>
               <Layout style={{padding: 25}}>
                 <Content style={{padding: 25, background: '#fff' }}>
-                  <Route exact path="/" component={Category} />
-                  <Route exact path="/post/create" component={PostCreate} />
-                  <Route exact path="/post/edit/:post_id" component={PostEdit} />
-                  <Route exact path="/comment/edit/:comment_id" component={CommentEdit} />
-                  <Route exact path="/:category" component={Category} />
-                  <Route exact path="/:category/:post_id" component={Post} />
+                  <Switch>
+                    <Route exact path="/" component={Category} />
+                    <Route exact path="/post/edit/:post_id" component={PostEdit} />
+                    <Route exact path="/comment/edit/:comment_id" component={CommentEdit} />
+                    <Route exact path="/post/create" component={PostCreate} />
+                    <Route exact path="/:category/:post_id" component={Post} />
+                    <Route exact path="/:category" component={Category} />
+                  </Switch>
                 </Content>
               </Layout>
             </Layout>
