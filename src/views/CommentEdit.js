@@ -9,24 +9,32 @@ import find from 'lodash/find';
 import editComment from '../actions/editComment';
 import CreateEditCommentForm from '../forms/CreateEditCommentForm';
 
-function CommentEdit({ categories, actions, comment }) {
-  return (
-    <div>
-      <h1>Edit Comment</h1>
-      <CreateEditCommentForm
-        comment={comment}
-        onSubmit={actions.editComment}
-        context="edit"
-      />
-    </div>
-  );
-}
+const CommentEdit = ({
+  categories,
+  actions: {
+    editComment,
+  },
+  comment,
+}) => (
+  <div>
+    <h1>Edit Comment</h1>
+    <CreateEditCommentForm
+      comment={comment}
+      onSubmit={editComment}
+      context="edit"
+    />
+  </div>
+);
 
 CommentEdit.propTypes = {
-  actions: PropTypes.object,
-}
+  actions: PropTypes.shape({
+    editCommetn: PropTypes.func.isRequired,
+  }).isRequired,
+  categories: PropTypes.arrayOf(PropTypes.string),
+  comment: PropTypes.object, 
+};
 
-function mapStateToProps({ comments }, { match }) {
+const mapStateToProps = ({ comments }, { match }) => {
   const commentsFlattened = flatten(values(comments));
   const { comment_id } = match.params;
   return {
@@ -34,10 +42,8 @@ function mapStateToProps({ comments }, { match }) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators({ editComment }, dispatch),
-  }
-}
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators({ editComment }, dispatch),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentEdit);

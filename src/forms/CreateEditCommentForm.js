@@ -5,17 +5,12 @@ import {
   Field,
   reduxForm,
 } from 'redux-form';
-import {
-  Button,
-  Select,
-} from 'antd';
+import { Button } from 'antd';
 import { TextField } from 'redux-form-antd'
 
 const standardInputStyle = {
   width: '100%',
 };
-
-const { Option } = Select;
 
 const CreateEditCommentForm = ({
   context,
@@ -52,6 +47,11 @@ const CreateEditCommentForm = ({
     </Button>
   </form>
 );
+
+CreateEditCommentForm.propTypes = {
+  context: PropTypes.string,
+  handleSubmit: PropTypes.func.isRequired,
+};
 
 const Form = reduxForm({
   form: 'createComment',

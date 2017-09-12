@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import find from 'lodash/find';
 import get from 'lodash/get';
@@ -31,16 +32,24 @@ const VOTE_WRAPPER_STYLE = {
   flexDirection: 'column',
   marginLeft: -20,
 };
-const POST_WRAPPER_STYLE = { flex: '1 1 auto' };
-const TITLE_STYLE = { marginBottom: 20 };
+const POST_WRAPPER_STYLE = {
+  flex: '1 1 auto',
+};
+const TITLE_STYLE = {
+  marginBottom: 20,
+};
 const BODY_STYLE = {
   fontSize: 18,
   marginBottom: 30,
 };
-const BUTTON_WRAPPER_STYLE = { marginBottom: 20 };
-const COMMENT_TITLE_STYLE = { marginBottom: 20 };
+const BUTTON_WRAPPER_STYLE = {
+  marginBottom: 20,
+};
+const COMMENT_TITLE_STYLE = {
+  marginBottom: 20,
+};
 
-function Post({
+const Post = ({
   post: {
     title,
     body,
@@ -57,7 +66,7 @@ function Post({
     downVoteComment,
     downVotePost,
   }
-}) {
+}) => {
   // this is kind of nasty, but prevents post from rendering on /post/create
   if (!id) { return null; }
 
@@ -90,36 +99,54 @@ function Post({
         <Card title='Add a Comment'>
           <CreateEditCommentForm
             context="create"
-            onSubmit={comment => createComment(id, comment)} />
+            onSubmit={comment => createComment(id, comment)}
+          />
         </Card>
       </div>
     </div>
   );
 }
 
-function mapStateToProps({ posts, comments }, { match }) {
+Post.propTypes = {
+  post: PropTypes.shape({
+    title: PropTypes.string,
+    body: PropTypes.string,
+    id: PropTypes.string,
+    voteScore: PropTypes.number,
+  }),
+  comments: PropTypes.arrayOf(PropTypes.object),
+  actions: PropTypes.shape({
+    createComment: PropTypes.func.isRequired,
+    deleteComment: PropTypes.func.isRequired,
+    deletePost: PropTypes.func.isRequired,
+    upVoteComment: PropTypes.func.isRequired,
+    upVotePost: PropTypes.func.isRequired,
+    downVoteComment: PropTypes.func.isRequired,
+    downVotePost: PropTypes.func.isRequired,
+  }),
+};
+
+const mapStateToProps = ({ posts, comments }, { match }) => {
   const { post_id } = match.params;
 
   return {
     post: find(posts, { id: post_id }), 
     comments: sortBy(get(comments, post_id, []), 'voteScore').reverse(),
-  }
-}
+  };
+};
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators({ 
-      createComment,
-      deletePost,
-      deleteComment,
-      downVoteComment,
-      downVotePost,
-      loadComments,
-      loadPosts,
-      upVoteComment,
-      upVotePost,
-    }, dispatch),
-  }
-}
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators({ 
+    createComment,
+    deletePost,
+    deleteComment,
+    downVoteComment,
+    downVotePost,
+    loadComments,
+    loadPosts,
+    upVoteComment,
+    upVotePost,
+  }, dispatch),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post);

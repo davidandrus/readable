@@ -6,32 +6,33 @@ import { connect } from 'react-redux';
 import createPost from '../actions/createPost';
 import CreateEditPostForm from '../forms/CreateEditPostForm';
 
-function PostCreate({ categories, actions }) {
-  return (
-    <div>
-      <h1>Create Post</h1>
-      <CreateEditPostForm
-        categories={categories}
-        onSubmit={actions.createPost}
-        context="create"
-      />
-    </div>
-  );
-}
+const PostCreate = ({
+  categories,
+  actions: {
+    createPost,
+  },
+}) => (
+  <div>
+    <h1>Create Post</h1>
+    <CreateEditPostForm
+      categories={categories}
+      onSubmit={createPost}
+      context="create"
+    />
+  </div>
+);
 
 PostCreate.propTypes = {
   categories: PropTypes.array,
-  actions: PropTypes.object,
-}
+  actions: PropTypes.shape({
+    createPost: PropTypes.func.isRequired
+  }).isRequired,
+};
 
-function mapStateToProps({ categories }) {
-  return { categories };
-}
+const mapStateToProps = ({ categories }) => ({ categories });
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators({ createPost }, dispatch),
-  }
-}
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators({ createPost }, dispatch),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostCreate);
