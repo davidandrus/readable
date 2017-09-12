@@ -1,10 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Card } from 'antd';
 
 import { formatDate } from '../helpers';
-
 import EditDeleteButtons from './EditDeleteButtons';
 import VoteControl from './VoteControl';
 
@@ -34,7 +33,7 @@ const EDIT_BUTTONS_WRAPPER_STYLE = {
   marginTop: 20,
 };
 
-export default function PostTeaser({
+const PostTeaser = ({
   onDelete,
   onDownVote,
   onUpVote,
@@ -48,7 +47,7 @@ export default function PostTeaser({
     title,
     voteScore,
   },
-}) {
+}) => {
   const titleElem = <Link to={`/post/${id}`}>{title}</Link>;
 
   return (
@@ -97,9 +96,11 @@ PostTeaser.propTypes = {
     author: PropTypes.string,
     body: PropTypes.string,
     category: PropTypes.string,
-    id: PropTypes.number,
+    id: PropTypes.string,
     title: PropTypes.string,
     timestamp: PropTypes.number,
     voteScore: PropTypes.number,
   }),
 };
+
+export default PostTeaser;

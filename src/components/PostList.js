@@ -1,27 +1,39 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import PostTeaser from './PostTeaser';
 
-export default function PostList({
+const PostList = ({
   comments,
   posts,
   onUpVote,
   onDelete,
   onDownVote,
-}) {
-  return (
-    <div>
-      {posts.map(post => (
-        <PostTeaser
-          post={{
-            ...post,
-            comments: comments[post.id],
-          }}
-          key={post.id}
-          onDelete={() => onDelete(post.id)}
-          onUpVote={() => onUpVote(post.id)}
-          onDownVote={() => onDownVote(post.id)}
-        />
-      ))}
-    </div>
-  )
+}) => (
+  <div>
+    {posts.map(post => (
+      <PostTeaser
+        post={{
+          ...post,
+          comments: comments[post.id],
+        }}
+        key={post.id}
+        onDelete={() => onDelete(post.id)}
+        onUpVote={() => onUpVote(post.id)}
+        onDownVote={() => onDownVote(post.id)}
+      />
+    ))}
+  </div>
+);
+
+PostList.propTypes = {
+  comments: PropTypes.object,
+  posts: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string,
+  })),
+  onUpVote: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onDownVote: PropTypes.func.isRequired,
 }
+
+export default PostList;

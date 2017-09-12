@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
   Field,
@@ -22,9 +23,6 @@ const CreateEditCommentForm = (props) => {
   const {
     context,
     handleSubmit,
-    pristine,
-    reset,
-    submitting,
   } = props;
   
   return (

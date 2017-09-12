@@ -19,9 +19,6 @@ const standardInputStyle = {
 const CreateEditPostForm = (props) => {
   const {
     handleSubmit,
-    pristine,
-    reset,
-    submitting,
     categories,
     context,
   } = props;
