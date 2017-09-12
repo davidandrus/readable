@@ -63,7 +63,7 @@ const CommentsList =({
               </div>
               <EditDeleteButtons
                 id={id}
-                onDelete={onDeleteComment}
+                onDelete={() => onDeleteComment(id)}
                 editUrl={`/comment/edit/${id}`}
               />
             </div>

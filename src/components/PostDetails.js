@@ -33,7 +33,7 @@ PostDetails.propTypes = {
   author: PropTypes.string,
   category: PropTypes.string,
   comments: PropTypes.array,
-  timestamp: PropTypes.Number,
+  timestamp: PropTypes.number,
 };
 
 export default PostDetails;

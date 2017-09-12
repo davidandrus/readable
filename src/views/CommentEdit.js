@@ -28,7 +28,7 @@ const CommentEdit = ({
 
 CommentEdit.propTypes = {
   actions: PropTypes.shape({
-    editCommetn: PropTypes.func.isRequired,
+    editComment: PropTypes.func.isRequired,
   }).isRequired,
   categories: PropTypes.arrayOf(PropTypes.string),
   comment: PropTypes.object, 

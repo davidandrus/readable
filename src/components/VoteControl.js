@@ -35,7 +35,7 @@ const VoteControl = ({
 VoteControl.propTypes = {
   onDownVote: PropTypes.func.isRequired,
   onUpVote: PropTypes.func.isRequired,
-  voteScore: PropTypes.number.isRequired,
+  voteScore: PropTypes.number,
 };
 
 export default VoteControl;
