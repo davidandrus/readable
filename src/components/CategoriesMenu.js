@@ -4,8 +4,11 @@ import { connect } from 'react-redux'
 import { Menu } from 'antd';
 import { Link } from 'react-router-dom';
 
-const CategoriesList = ({ categories }) => (
-  <Menu>
+const CategoriesList = ({
+  categories,
+  category,
+}) => (
+  <Menu selectedKeys={[category]}>
     {categories.map(category => (
       <Menu.Item key={category.name}>
         <Link 
@@ -23,6 +26,9 @@ CategoriesList.propTypes = {
   categories: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-const mapStateToProps = ({ categories }) => ({ categories });
+const mapStateToProps = ({ categories, router }) => ({
+  categories,
+  category: router.location.pathname.split('/')[1],
+});
 
 export default connect(mapStateToProps)(CategoriesList);
