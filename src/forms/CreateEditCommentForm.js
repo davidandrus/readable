@@ -8,9 +8,14 @@ import {
 import { Button } from 'antd';
 import { TextField } from 'redux-form-antd'
 
+import { requiredValidator } from '../helpers';
+
 const standardInputStyle = {
   width: '100%',
 };
+
+const authorValidator = requiredValidator('Author');
+const bodyValidator = requiredValidator('Post Body');
 
 const CreateEditCommentForm = ({
   context,
@@ -24,6 +29,7 @@ const CreateEditCommentForm = ({
         name="author"
         size='large'
         style={standardInputStyle}
+        validate={[ authorValidator ]}
       />
     </label>
     <label>
@@ -34,6 +40,7 @@ const CreateEditCommentForm = ({
         size='large'
         style={standardInputStyle} 
         type="textarea"
+        validate={[ bodyValidator ]}
       />
     </label>
     <Button

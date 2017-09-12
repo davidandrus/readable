@@ -4,17 +4,22 @@ import {
   Field,
   reduxForm,
 } from 'redux-form';
-
 import { Button } from 'antd';
-
 import {
   SelectField,
   TextField,
 } from 'redux-form-antd'
 
+import { requiredValidator } from '../helpers';
+
 const standardInputStyle = {
   width: '100%',
 };
+
+const titleValidator = requiredValidator('Title');
+const categoryValidator = requiredValidator('Category');
+const authorValidator = requiredValidator('Author');
+const bodyValidator = requiredValidator('Post Body');
 
 const CreateEditPostForm = ({
   handleSubmit,
@@ -36,6 +41,7 @@ const CreateEditPostForm = ({
           name="title"
           size='large'
           style={standardInputStyle} 
+          validate={[ titleValidator ]}
         />
       </label>
       <label>
@@ -44,7 +50,8 @@ const CreateEditPostForm = ({
           component={SelectField}
           name="category"
           options={categoryOptions}
-          style={standardInputStyle} 
+          style={standardInputStyle}
+          validate={[ categoryValidator ]}
         />
       </label>
       <label>
@@ -54,6 +61,7 @@ const CreateEditPostForm = ({
           name="author"
           size='large'
           style={standardInputStyle}
+          validate={[ authorValidator ]}
         />
       </label>
       <label>
@@ -64,6 +72,7 @@ const CreateEditPostForm = ({
           size='large'
           style={standardInputStyle} 
           type="textarea"
+          validate={[ bodyValidator ]}
         />
       </label>
       <Button
