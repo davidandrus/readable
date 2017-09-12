@@ -1,6 +1,6 @@
 import uuid from 'uuid/v1';
 
-const BASE_URL = 'http://localhost:5001';
+const BASE_URL = 'http://localhost:3001';
 
 const standardRequest = (endpoint, options = {}) => {
   const {

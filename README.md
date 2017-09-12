@@ -26,6 +26,7 @@ ___________
 ### Running the App
 
 #### Clone App the Repo
+In another terminal tab (your server should already be running)
 ``` sh
 git clone git@github.com:davidandrus/readable.git
 ```
