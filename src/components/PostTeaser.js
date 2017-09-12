@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Card } from 'antd';
 
-import { formatDate } from '../helpers';
 import EditDeleteButtons from './EditDeleteButtons';
+import PostDetails from './PostDetails';
 import VoteControl from './VoteControl';
 
 const WRAPPER_STYLE = {
@@ -29,25 +29,21 @@ const POST_BODY_WRAPPER_STYLE = {
 const POST_BODY_STYLE = {
   marginBottom: 20,
 };
-const EDIT_BUTTONS_WRAPPER_STYLE = {
-  marginTop: 20,
-};
 
 const PostTeaser = ({
   onDelete,
   onDownVote,
   onUpVote,
-  post: {
-    author,
+  post,
+}) => {
+  const {
     body,
-    comments,
     category,
     id,
-    timestamp,
     title,
     voteScore,
-  },
-}) => {
+  } = post;
+
   const titleElem = <Link to={`/${category}/${id}`}>{title}</Link>;
 
   return (
@@ -65,23 +61,12 @@ const PostTeaser = ({
             <div style={POST_BODY_STYLE}>
               {body}
             </div>
-            <div>
-              Posted By: <strong>{author}</strong>
-            </div>
-            <div>
-              Posted in: <strong>{category}</strong>
-            </div>
-            <div>
-              Posted: <strong>{formatDate(timestamp)}</strong>
-            </div>
-            <div><strong>{comments.length} Comments</strong></div>
-            <div style={EDIT_BUTTONS_WRAPPER_STYLE}>
-              <EditDeleteButtons
-                editUrl={`/post/edit/${id}`}
-                id={id}
-                onDelete={onDelete}
-              />
-            </div>
+            <PostDetails post={post} />
+            <EditDeleteButtons
+              editUrl={`/post/edit/${id}`}
+              id={id}
+              onDelete={onDelete}
+            />
           </div>
         </Card>
       </div>
@@ -93,12 +78,10 @@ PostTeaser.propTypes = {
   onDownVote: PropTypes.func,
   onUpVote: PropTypes.func,
   post: PropTypes.shape({
-    author: PropTypes.string,
     body: PropTypes.string,
     category: PropTypes.string,
     id: PropTypes.string,
     title: PropTypes.string,
-    timestamp: PropTypes.number,
     voteScore: PropTypes.number,
   }),
 };

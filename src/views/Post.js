@@ -8,6 +8,7 @@ import { bindActionCreators } from 'redux';
 import { Card } from 'antd';
 
 import EditDeleteButtons from '../components/EditDeleteButtons';
+import PostDetails from '../components/PostDetails';
 import CommentsList from '../components/CommentsList';
 import VoteControl from '../components/VoteControl';
 import createComment from '../actions/createComment';
@@ -50,12 +51,7 @@ const COMMENT_TITLE_STYLE = {
 };
 
 const Post = ({
-  post: {
-    title,
-    body,
-    id,
-    voteScore,
-  } = {},
+  post = {},
   comments,
   actions: {
     createComment,
@@ -67,6 +63,12 @@ const Post = ({
     downVotePost,
   }
 }) => {
+  const {
+    title,
+    body,
+    id,
+    voteScore,
+  } = post;
   return (
     <div style={WRAPPER_STYLE}>
       <div style={VOTE_WRAPPER_STYLE}>
@@ -79,6 +81,7 @@ const Post = ({
       <div style={POST_WRAPPER_STYLE}>
         <h1 style={TITLE_STYLE}>{title}</h1>
         <div style={BODY_STYLE}>{body}</div>
+        <PostDetails post={post} />
         <div style={BUTTON_WRAPPER_STYLE}>
           <EditDeleteButtons
             editUrl={`/post/edit/${id}`}
