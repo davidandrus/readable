@@ -111,7 +111,6 @@ const mapStateToProps = ({
 }, { match }) => {
   const category = get(match, 'params.category');
   const postsFiltered =  posts
-    .filter(post => !post.deleted)
     // filter by category if viewing category page
     .filter(post => category ? category === post.category : true);
 

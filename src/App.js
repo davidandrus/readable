@@ -23,6 +23,7 @@ import Post from './views/Post';
 import PostCreate from './views/PostCreate';
 import PostEdit from './views/PostEdit';
 import CommentEdit from './views/CommentEdit';
+import PageNotFound from './views/PageNotFound';
 import CategoriesMenu from './components/CategoriesMenu'
 import loadCategories from './actions/loadCategories';
 import loadPosts from './actions/loadPosts';
@@ -64,6 +65,7 @@ class App extends Component {
                     <Route exact path="/post/create" component={PostCreate} />
                     <Route exact path="/:category/:post_id" component={Post} />
                     <Route exact path="/:category" component={Category} />
+                    <Route component={PageNotFound}/>
                   </Switch>
                 </Content>
               </Layout>

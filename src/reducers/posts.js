@@ -14,12 +14,9 @@ const addOrReplacePost = (state, { payload }) => state
   .concat(payload);
 
 export default handleActions({
-  [LOAD_POSTS.FULFILLED]: (state, { payload }) => payload,
+  [LOAD_POSTS.FULFILLED]: (state, { payload }) => payload.filter(post => !post.deleted),
   [CREATE_POST.FULFILLED]: addOrReplacePost,
-  [DELETE_POST.FULFILLED]: (state, { payload }) => state.map(post => ({
-    ...post,
-    deleted: post.id === payload || post.deleted,
-  })),
+  [DELETE_POST.FULFILLED]: (state, { payload }) => state.filter(post => post.id !== payload),
   [EDIT_POST.FULFILLED]: addOrReplacePost,
   [UPVOTE_POST.FULFILLED]: addOrReplacePost,
   [DOWNVOTE_POST.FULFILLED]: addOrReplacePost,

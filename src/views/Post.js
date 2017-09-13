@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
 import find from 'lodash/find';
 import get from 'lodash/get';
 import sortBy from 'lodash/sortBy';
 import { bindActionCreators } from 'redux';
 import { Card } from 'antd';
 
+import PageNotFound from '../views/PageNotFound';
 import EditDeleteButtons from '../components/EditDeleteButtons';
 import PostDetails from '../components/PostDetails';
 import CommentsList from '../components/CommentsList';
@@ -52,6 +54,7 @@ const COMMENT_TITLE_STYLE = {
 
 const Post = ({
   post = {},
+  postsLoaded,
   comments,
   actions: {
     createComment,
@@ -69,6 +72,11 @@ const Post = ({
     id,
     voteScore,
   } = post;
+
+  if (postsLoaded && !title) {
+    return <PageNotFound />
+  }
+
   return (
     <div style={WRAPPER_STYLE}>
       <div style={VOTE_WRAPPER_STYLE}>
@@ -126,11 +134,18 @@ Post.propTypes = {
   }),
 };
 
-const mapStateToProps = ({ posts, comments }, { match }) => {
-  const { post_id } = match.params;
+const mapStateToProps = ({ posts, comments, postsLoaded }, { match }) => {
+  const {
+    post_id,
+    category,
+  } = match.params;
 
   return {
-    post: find(posts, { id: post_id }), 
+    postsLoaded,
+    post: find(posts, {
+      category, // make sure post is displaying in correct category
+      id: post_id,
+    }),
     comments: sortBy(get(comments, post_id, []), 'voteScore').reverse(),
   };
 };
